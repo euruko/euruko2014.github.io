@@ -1,0 +1,172 @@
+@media (max-width: 1600px){
+    #mainSlide .cloud.first{
+        left: 2%;
+    }
+    #mainSlide .cloud.second{
+        right: 0;
+    }
+    @keyframes cloud1Floating {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        4%{
+            transform: translate3d(-1%, -6%, 0);
+        }
+        8%{
+            transform: translate3d(-5%, -10%, 0);
+        }
+        16%{
+            transform: translate3d(-17%, 0, 0);
+        }
+        25%{
+            transform: translate3d(-25%, -10%, 0);
+        }
+        33%{
+            transform: translate3d(-33%, 0, 0);
+        }
+        41%{
+            transform: translate3d(-41%, -10%, 0);
+        }
+        46%{
+            transform: translate3d(-49%, -6%, 0);
+        }
+        50%{
+            transform: translate3d(-50%, 0, 0);
+        }
+        54%{
+            transform: translate3d(-49%, 6%, 0);
+        }
+        58%{
+            transform: translate3d(-41%, 10%, 0);
+        }
+        66%{
+            transform: translate3d(-33%, 0, 0);
+        }
+        75%{
+            transform: translate3d(-25%, 10%, 0);
+        }
+        83%{
+            transform: translate3d(-17%, 0, 0);
+        }
+        91%{
+            transform: translate3d(-5%, 10%, 0);
+        }
+        96%{
+            transform: translate3d(-1%, 6%, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    @-webkit-keyframes cloud1Floating{
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        4%{
+            -webkit-transform: translate3d(-1%, -6%, 0);
+        }
+        8%{
+            -webkit-transform: translate3d(-5%, -10%, 0);
+        }
+        16%{
+            -webkit-transform: translate3d(-17%, 0, 0);
+        }
+        25%{
+            -webkit-transform: translate3d(-25%, -10%, 0);
+        }
+        33%{
+            -webkit-transform: translate3d(-33%, 0, 0);
+        }
+        41%{
+            -webkit-transform: translate3d(-41%, -10%, 0);
+        }
+        46%{
+            -webkit-transform: translate3d(-49%, -6%, 0);
+        }
+        50%{
+            -webkit-transform: translate3d(-50%, 0, 0);
+        }
+        54%{
+            -webkit-transform: translate3d(-49%, 6%, 0);
+        }
+        58%{
+            -webkit-transform: translate3d(-41%, 10%, 0);
+        }
+        66%{
+            -webkit-transform: translate3d(-33%, 0, 0);
+        }
+        75%{
+            -webkit-transform: translate3d(-25%, 10%, 0);
+        }
+        83%{
+            -webkit-transform: translate3d(-17%, 0, 0);
+        }
+        91%{
+            -webkit-transform: translate3d(-5%, 10%, 0);
+        }
+        96%{
+            -webkit-transform: translate3d(-1%, 6%, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+    }
+    @keyframes cloud2Floating {
+        0% {
+            transform: translate3d(25%, 0, 0);
+        }
+        12%{
+            transform: translate3d(12%, -5%, 0);
+        }
+        25%{
+            transform: translate3d(0, 0, 0);
+        }
+        37%{
+            transform: translate3d(-12%, -5%, 0);
+        }
+        50%{
+            transform: translate3d(-25%, 0, 0);
+        }
+        62%{
+            transform: translate3d(-12%, 5%, 0);
+        }
+        75%{
+            transform: translate3d(0, 0, 0);
+        }
+        87%{
+            transform: translate3d(12%, 5%, 0);
+        }
+        100% {
+            transform: translate3d(25%, 0, 0);
+        }
+    }
+    @-webkit-keyframes cloud2Floating{
+        0% {
+            -webkit-transform: translate3d(40%, 0, 0);
+        }
+        12%{
+            -webkit-transform: translate3d(27%, -5%, 0);
+        }
+        25%{
+            -webkit-transform: translate3d(15%, 0, 0);
+        }
+        37%{
+            -webkit-transform: translate3d(2%, -5%, 0);
+        }
+        50%{
+            -webkit-transform: translate3d(-10%, 0, 0);
+        }
+        62%{
+            -webkit-transform: translate3d(2%, 5%, 0);
+        }
+        75%{
+            -webkit-transform: translate3d(15%, 0, 0);
+        }
+        87%{
+            -webkit-transform: translate3d(27%, 5%, 0);
+        }
+        100% {
+            -webkit-transform: translate3d(40%, 0, 0);
+        }
+    }
+}

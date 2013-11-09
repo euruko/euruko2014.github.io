@@ -1,0 +1,311 @@
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Black.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Bold.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: bold; /* 700 */
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-BoldIt.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Extrabold.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Light.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-LightItalic.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Regular.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: normal; /* 400 */
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-RegularItalic.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: normal; /* 400 */
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-Semibold.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('fonts/ProximaNova-SemiboldItalic.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-Light.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-LightIt.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-Regular.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: normal; /* 400 */
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-RegularIt.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: normal; /* 400 */
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-Semibold.otf')  format('OpenType'),
+    font-style: normal;
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Proxima Nova Condenced';
+    src: url('fonts/ProximaNovaCond-SemiboldIt.otf')  format('OpenType'),
+    font-style: italic;
+    font-weight: 600;
+}
+
+*{
+    border: none;
+    margin: 0;
+    outline: none;
+    padding: 0;
+}
+a{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+html {
+    font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+    width: 100%;
+}
+body {
+    background-color: #fff;
+    font-size: 16px;
+    height: inherit;
+    text-align: center;
+    width: inherit;
+}
+
+#mainView{
+    height: inherit;
+    width: inherit;
+}
+.slide{
+    background-size: auto 100%;
+    position: relative;
+    width: 100%;
+}
+    .slide .img{
+        height: 100%;
+        left: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+        .slide .content{
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            width: 990px;
+        }
+            .slide .content h1{
+                color: #9b0909;
+                font-size: 30px;
+                font-weight: 600;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+            }
+#mainSlide{
+    background: url("img/mainSlideBg.jpg") no-repeat;
+    background-size: 100% 100%;
+    height: 90%;
+    z-index: 10;
+}
+    #mainSlide .img{
+        background: url("img/mainSlideImg.png") no-repeat center bottom;
+        background-size: auto auto;
+        bottom: -64px;
+        height: 652px;
+    }
+    #mainSlide header{
+        float: right;
+        margin-top: 60px;
+        padding-left: 15px;
+    }
+        #mainSlide header nav a{
+            color: #000;
+            font-size: 13px;
+            font-weight: 200;
+            margin-right: 24px;
+            text-transform: uppercase;
+        }
+    #mainSlide article{
+        height: 300px;
+        left: 50%;
+        margin: -150px 0 0 -270px;
+        position: absolute;
+        top: 50%;
+        width: 540px;
+    }
+        #logo{
+            width: 220px;
+        }
+        #mainSlide article p{
+            font-weight: 200;
+            line-height: 25px;
+            text-transform: uppercase;
+        }
+    #mainSlide .cloud{
+        display: block;
+        position: absolute;
+    }
+    #mainSlide .cloud.first{
+        top: 30%;
+        left: 15%;
+    }
+    #mainSlide .cloud.second{
+        top: 20%;
+        right: 0;
+    }
+#aboutSlide{
+    background: url("img/aboutSlideBg.jpg") no-repeat center top;
+    height: 632px;
+    z-index: 9;
+}
+    #aboutSlide .stalactites{
+        background: url("img/stalactites.png") no-repeat center;
+        height: 320px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    #aboutSlide .img{
+        background: url("img/aboutSlideImg.png") no-repeat center;
+        bottom: -46px;
+        height: 47px;
+        width: 100%;
+    }
+    #aboutSlide .content{
+        height: auto;
+        padding-top: 123px;
+    }
+        #aboutSlide article{
+            margin: 30px auto 0 auto;
+            width: 880px;
+        }
+        #aboutSlide article p{
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+#ticketsSlide{
+    background: url("img/ticketsSlideBg.jpg") no-repeat center top;
+    height: 744px;
+    z-index: 8;
+}
+    #ticketsSlide .img{
+        background: url("img/ticketsSlideImg.png") no-repeat center;
+        bottom: -104px;
+        height: 105px;
+        width: 100%;
+    }
+    #ticketsSlide .content{
+        height: auto;
+        padding-top: 130px;
+    }
+        #ticketsSlide header{
+            margin-bottom: 95px;
+        }
+            #tickets{
+                height: 113px;
+                margin: 0 auto 174px auto;
+                position: relative;
+                width: 240px;
+            }
+                #tickets div{
+                    height: 113px;
+                    position: relative;
+                    overflow: hidden;
+                    width: 240px;
+                }
+                #tickets img{
+                    /*left: 50%;*/
+                    left: 0;
+                    /*margin-left: -105px;*/
+                    position: absolute;
+                    bottom: 0;
+                }
+                #tickets img.frontShadow{
+                    left: -13px;
+                    top: -13px;
+                }
+                #tickets img.front{
+                    bottom: 10px;
+                }
+            #ticketsSlide h3{
+                color: #a02e30;
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 23px;
+                margin-bottom: 26px;
+            }
+            #ticketsSlide p{
+                font-size: 18px;
+                line-height: 18px;
+            }
+            #ticketsSlide .arrow{
+                position: absolute;
+                right: 215px;
+                top: 322px;
+            }
+                #shaft{
+                    background: url('img/shaft.png') no-repeat;
+                    width: 113px;
+                }
+                #pendulum{
+                    position: absolute;
+                    left: 0;
+                    top: 98px;
+                    width: 122px;
+                }
+                    #arrowhead{
+                        background: url('img/arrowhead.png') no-repeat;
+                        float: right;
+                        height: 27px;
+                        transform: rotate(-90deg);
+                        -webkit-transform: rotate(-90deg);
+                        width: 19px;
+                    }
