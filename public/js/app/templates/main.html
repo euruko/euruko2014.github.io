@@ -1,64 +1,106 @@
-<section id="mainSlide" class="slide">
+<section id="home" class="slide">
     <div class="img"></div>
     <div class="content">
         <header>
             <nav>
-                <a href="#aboutSlide">about</a>
-                <a href="#ticketsSlide">tickets</a>
+                <a href="#about/" class="nav">about</a>
+                <a href="#venue/" class="nav">venue</a>
+                <a href="https://github.com/euruko2014/call-for-papers" target="_blank">call for papers</a>
+                <a href="#tickets/" class="nav button">tickets</a>
             </nav>
         </header>
         <article>
             <img id="logo" src="css/img/logo.png">
-            <!--<div id="logo"></div>-->
-            <p>Annual Conference 2014 about the Ruby language will<br> take place in Kyiv on 20th-21th in June.</p>
+            <p>The annual European Ruby Conference will take place<br>
+                in Kyiv on 20<sup>th</sup>&mdash;21<sup>st</sup> of June, 2014.</p>
         </article>
     </div>
     <img class="cloud first" src="css/img/cloud1.png">
     <img class="cloud second" src="css/img/cloud2.png">
 </section>
-<section id="aboutSlide" class="slide">
-    <div class="stalactites"></div>
+<section id="about" class="slide">
     <div class="img"></div>
     <div class="content">
         <header>
             <h1>About</h1>
         </header>
         <article>
-            <p>An annual European Ruby Conference (EuRuKo) is focused on the Ruby programming language and satellite technolo-<br>
-                gies, where its awesome attendees give ear, chat, hack, and share the adorable content and involvement from awe-<br>
-                some speakers.</p>
+            <p>EuRuKo is the annual European Ruby Conference on Ruby programming language<br>
+                and satellite technologies. Its awesome attendees chat, hack, and share in a friendly atmosphere.</p>
             <p>Since 2003, EuRuKo has guested all over the Europe, organized by Ruby developers for Ruby developers.<br>
-                Salute Kyiv, the next amazing conference’s host!</p>
-            <p>Inspiring and stimulating time of teamwork and coaching must spark you off.<br>
-                Every “Ruby meeting” is spurred on by its volunteers and enthusiasts who welcome you on 28th-29th of June, 2014 to<br>
-                party and study with other Ruby experts.</p>
+               Salute Kyiv, the next amazing conference’s host!</p>
+            <p>The conference is spurred on by its volunteers and enthusiasts who welcome you on 20<sup>th</sup>&mdash;21<sup>st</sup> of June, 2014 to<br>
+               meet and hang out with the community.</p>
             <p>Dive into the heart of tech gigs, and Ruby fans sharing, discussing, and simply having great time!</p>
             <p>Come and love the fun!</p>
         </article>
+        <img id="stalactite1" class="stalactites" src="css/img/stalactite1.png">
+        <img id="stalactite2" class="stalactites" src="css/img/stalactite2.png">
+        <img id="stalactite3" class="stalactites" src="css/img/stalactite3.png">
+        <img id="stalactite4" class="stalactites" src="css/img/stalactite4.png">
+        <img id="stalactite5" class="stalactites" src="css/img/stalactite5.png">
     </div>
 </section>
-<section id="ticketsSlide" class="slide">
+<section id="tickets" class="slide">
     <div class="img"></div>
     <div class="content">
         <header>
             <h1>tickets</h1>
         </header>
         <article>
-            <div id="tickets">
+            <a id="ticketsBlock" href="http://euruko2014.ticketforevent.com/" target="_blank">
                 <div>
-                    <img class="back" src="css/img/ticket.jpg">
-                    <img class="frontShadow" src="css/img/ticketShadow.png">
+                    <img class="back" src="css/img/ticket.png">
+                    <img class="frontShadow animation" src="css/img/ticketShadow.png">
                 </div>
-                <img class="front" src="css/img/ticket.jpg">
-            </div>
+                <img class="front animation" src="css/img/ticket.png">
+            </a>
             <div class="arrow">
-                <div id="shaft"></div>
-                <div id="pendulum">
+                <div id="shaft" class="animation"></div>
+                <div id="pendulum" class="animation">
                     <div id="arrowhead"></div>
                 </div>
             </div>
-            <h3>Get an invoice for your ticket</h3>
-            <p>The ticket's price is 60 €.</p>
+            <h3><a href="http://euruko2014.ticketforevent.com/" target="_blank">Ticket sales is now open</a></h3>
+            <p>Grab one now for just €58 (650 UAH).</p>
         </article>
     </div>
 </section>
+<section id="venue" class="slide">
+    <div class="content">
+        <header>
+            <h1>Venue</h1>
+        </header>
+        <article>
+            <div id="circles">
+                <div class="popOverBlock left">
+                    <div class="circle">
+                        <a>hall</a>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="popOver end">
+                        <div class="triangle"></div>
+                        <img src="css/img/hall.jpg">
+                        <p>We will gather this time in the International Center of Culture and Arts in Kyiv, Ukraine. That is a fancy spot for famous writers, composers, and other public figures, a sort of an architectural reflection of the spiritual renaissance of Ukraine.  The building was constructed at the beginning of the 20th century. </p>
+                    </div>
+                </div>
+                <div class="popOverBlock right">
+                    <div class="circle">
+                        <a>stage</a>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="popOver">
+                        <div class="triangle"></div>
+                        <img src="css/img/stage.jpg">
+                        <p>It’s designed in the classical style to become the greatest concert hall in Kyiv being able to accommodate for about 2000 people. Spacious rooms of the Centre's foyer will host in June of 2014 for about 600 Ruby lovers! And the city itself will embrace its visitors with Slavic generosity and kindness of locals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="marker animation">
+                <img src="css/img/spiral.png"/>
+            </div>
+            <div class="address"><p>1 Instytutska St, Kyiv</p></div>
+        </article>
+    </div>
+</section>
+<section id="modal"></section>

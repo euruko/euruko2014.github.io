@@ -1,9 +1,11 @@
-@media (max-width: 1366px) and (max-width: 1600px){
+@media (max-width: 1366px){
     #home .cloud.first{
         left: 2%;
+        width: 280px;
     }
     #home .cloud.second{
         right: 0;
+        width: 300px;
     }
     @keyframes cloud1Floating {
         0% {

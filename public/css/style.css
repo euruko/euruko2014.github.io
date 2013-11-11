@@ -111,19 +111,46 @@ html {
     height: 100%;
     overflow-x: hidden;
     width: 100%;
+    color: #4b4b4b;
 }
 body {
     background-color: #fff;
     font-size: 16px;
     height: inherit;
+    overflow-x: hidden;
     text-align: center;
     width: inherit;
+}
+body.modal{
+    overflow-y: hidden;
+}
+body.modal #mainView{
+    overflow-y: hidden;
+}
+body.modal #modal{
+    display: block;
 }
 
 #mainView{
     height: inherit;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: inherit;
+    -webkit-overflow-scrolling: touch
 }
+#modal{
+    background-color: rgba(0, 0, 0, .6);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 11;
+}
+    #modal img{
+        display: block;
+    }
 .slide{
     background-size: auto 100%;
     position: relative;
@@ -146,150 +173,183 @@ body {
                 color: #9b0909;
                 font-size: 30px;
                 font-weight: 600;
-                letter-spacing: .1em;
+                letter-spacing: 1px;
                 text-transform: uppercase;
             }
-#mainSlide{
+#home{
     background: url("img/mainSlideBg.jpg") no-repeat;
     background-size: 100% 100%;
     height: 90%;
     z-index: 10;
 }
-    #mainSlide .img{
+    #home .img{
         background: url("img/mainSlideImg.png") no-repeat center bottom;
         background-size: auto auto;
         bottom: -64px;
         height: 652px;
     }
-    #mainSlide header{
+    #home header{
         float: right;
         margin-top: 60px;
         padding-left: 15px;
     }
-        #mainSlide header nav a{
-            color: #000;
+        #home header nav a{
+            color: #4b4b4b;
             font-size: 13px;
             font-weight: 200;
+            letter-spacing: 1px;
             margin-right: 24px;
             text-transform: uppercase;
         }
-    #mainSlide article{
+        #home nav a.button{
+            background-color: rgba(166, 16, 16, .7);
+            border-radius: 45px;
+            color: #fff;
+            display: inline-block;
+            height: 30px;
+            line-height: 32px;
+            width: 90px;
+        }
+    #home article{
         height: 300px;
         left: 50%;
         margin: -150px 0 0 -270px;
         position: absolute;
         top: 50%;
-        width: 540px;
+        width: 600px;
     }
         #logo{
+            display: block;
+            /*margin-left: 167px;*/
+            margin: 0 auto;
             width: 220px;
         }
-        #mainSlide article p{
+        #home article p{
             font-weight: 200;
+            letter-spacing: 1px;
             line-height: 25px;
             text-transform: uppercase;
         }
-    #mainSlide .cloud{
+    #home .cloud{
         display: block;
         position: absolute;
     }
-    #mainSlide .cloud.first{
+    #home .cloud.first{
         top: 30%;
         left: 15%;
     }
-    #mainSlide .cloud.second{
+    #home .cloud.second{
         top: 20%;
         right: 0;
     }
-#aboutSlide{
+#about{
     background: url("img/aboutSlideBg.jpg") no-repeat center top;
     height: 632px;
     z-index: 9;
 }
-    #aboutSlide .stalactites{
-        background: url("img/stalactites.png") no-repeat center;
-        height: 320px;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-    #aboutSlide .img{
+    #about .img{
         background: url("img/aboutSlideImg.png") no-repeat center;
-        bottom: -46px;
+        bottom: -45px;
         height: 47px;
         width: 100%;
     }
-    #aboutSlide .content{
+    #about .content{
         height: auto;
         padding-top: 123px;
+        position: relative;
     }
-        #aboutSlide article{
+        #about article{
             margin: 30px auto 0 auto;
             width: 880px;
         }
-        #aboutSlide article p{
-            line-height: 24px;
-            margin-bottom: 20px;
+            #about article p{
+                line-height: 24px;
+                margin-bottom: 20px;
+            }
+        #about .stalactites{
+            display: block;
+            position: absolute;
+            top: 0;
         }
-#ticketsSlide{
+        #stalactite1{
+            left: -123px;
+        }
+        #stalactite2{
+            left: -32px;
+        }
+        #stalactite3{
+            right: 161px;
+        }
+        #stalactite4{
+            right: -54px;
+        }
+        #stalactite5{
+            right: -112px;
+        }
+#tickets{
     background: url("img/ticketsSlideBg.jpg") no-repeat center top;
     height: 744px;
     z-index: 8;
 }
-    #ticketsSlide .img{
+    #tickets .img{
         background: url("img/ticketsSlideImg.png") no-repeat center;
-        bottom: -104px;
+        bottom: -103px;
         height: 105px;
         width: 100%;
     }
-    #ticketsSlide .content{
+    #tickets .content{
         height: auto;
         padding-top: 130px;
     }
-        #ticketsSlide header{
+        #tickets header{
             margin-bottom: 95px;
         }
-            #tickets{
+            #ticketsBlock{
+                display: block;
                 height: 113px;
                 margin: 0 auto 174px auto;
                 position: relative;
                 width: 240px;
             }
-                #tickets div{
+                #ticketsBlock div{
                     height: 113px;
                     position: relative;
                     overflow: hidden;
                     width: 240px;
                 }
-                #tickets img{
-                    /*left: 50%;*/
+                #ticketsBlock img{
                     left: 0;
-                    /*margin-left: -105px;*/
-                    position: absolute;
                     bottom: 0;
+                    position: absolute;
+                    width: 240px;
                 }
-                #tickets img.frontShadow{
-                    left: -13px;
-                    top: -13px;
+                #ticketsBlock img.frontShadow{
+                    height: 113px;
+                    left: -10px;
+                    top: 8px;
+                    width: 260px;
                 }
-                #tickets img.front{
+                #ticketsBlock img.front{
                     bottom: 10px;
                 }
-            #ticketsSlide h3{
-                color: #a02e30;
+            #tickets h3{
                 font-size: 20px;
                 font-weight: bold;
                 line-height: 23px;
                 margin-bottom: 26px;
             }
-            #ticketsSlide p{
+                #tickets h3 a{
+                    color: #a02e30;
+                    text-decoration: underline;
+                }
+            #tickets p{
                 font-size: 18px;
                 line-height: 18px;
             }
-            #ticketsSlide .arrow{
+            #tickets .arrow{
                 position: absolute;
-                right: 215px;
-                top: 322px;
+                right: 230px;
+                top: 323px;
             }
                 #shaft{
                     background: url('img/shaft.png') no-repeat;
@@ -309,3 +369,112 @@ body {
                         -webkit-transform: rotate(-90deg);
                         width: 19px;
                     }
+#venue{
+    background: url("img/venueSlideBg.jpg") no-repeat center top;
+    height: 842px;
+    position: relative;
+    z-index: 7;
+}
+    #venue .content{
+        height: auto;
+        padding-top: 170px;
+        position: relative;
+    }
+        header{
+            margin-bottom: 55px;
+        }
+        #circles{
+            height: 130px;
+            margin: 0 auto 272px auto;
+            position: relative;
+            width: 770px;
+        }
+            #circles .popOverBlock{
+                height: 130px;
+                position: absolute;
+                top: 0;
+                width: 130px;
+            }
+            #circles .popOverBlock.left{
+                left: 0;
+            }
+            #circles .popOverBlock.right{
+                right: 0;
+            }
+                #circles .popOverBlock .circle{
+                    border: 2px solid #a71e1e;
+                    border-radius: 100%;
+                    cursor: pointer;
+                    height: 126px;
+                    position: relative;
+                    width: 126px;
+                }
+                    #circles .popOverBlock .circle a{
+                        color: #a71e1e;
+                        letter-spacing: 1px;
+                        line-height: 126px;
+                        text-transform: uppercase;
+                    }
+                    #circles .popOverBlock .circle .arrow{
+                        background: url("img/down.png") no-repeat;
+                        bottom: 27px;
+                        height: 9px;
+                        left: 50%;
+                        margin-left: -8px;
+                        position: absolute;
+                        width: 17px;
+                    }
+                #circles .popOverBlock .popOver{
+                    background-color: #fff;
+                    height: 327px;
+                    left: -80px;
+                    padding: 28px 31px;
+                    position: relative;
+                    top: 28px;
+                    width: 228px;
+                }
+                    #circles .popOverBlock .popOver .triangle{
+                        border-left: 13px solid transparent;
+                        border-right: 13px solid transparent;
+                        border-bottom: 12px solid #fff;
+                        height: 0;
+                        left: 50%;
+                        margin-left: -13px;
+                        position: absolute;
+                        top: -12px;
+                        width: 0;
+                    }
+                    #circles .popOverBlock .popOver img{
+                        cursor: pointer;
+                        height: 131px;
+                        margin-bottom: 25px;
+                        width: 229px;
+                    }
+                    #circles .popOverBlock .popOver p{
+                        font-size: 14px;
+                        line-height: 19px;
+                        text-align: justify;
+                    }
+        #venue .marker{
+            background: url('img/marker.png') no-repeat;
+            height: 50px;
+            margin: 0 auto 12px auto;
+            padding: 10px 0 0 9px;
+            width: 38px;
+        }
+            #venue .marker img{
+                height: 28px;
+                display: block;
+                width: 28px;
+            }
+        #venue .address{
+            background-color: rgba(43, 77, 104, .32);
+            border-radius: 13px;
+            color: #fff;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+            padding: 0 13px;
+            width: 184px;
+        }

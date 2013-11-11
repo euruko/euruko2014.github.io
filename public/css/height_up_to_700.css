@@ -1,0 +1,16 @@
+@media (max-height: 700px){
+    #home header{
+        margin-top: 50px;
+    }
+    #logo{
+        width: 120px;
+    }
+    #home .cloud.first{
+        top: 5%;
+
+    }
+    #home .cloud.second{
+        top: 15%;
+        width: 300px;
+    }
+}

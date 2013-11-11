@@ -1,5 +1,14 @@
-#mainSlide .cloud.first,
-#mainSlide .cloud.second{
+#modal{
+    opacity: 0;
+    transition: opacity 2s .2s;
+    -webkit-transition: opacity 2s;
+}
+body.modal #modal{
+    opacity: 1;
+}
+
+#home .cloud.first.animation,
+#home .cloud.second.animation{
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
     animation-duration: 30s;
@@ -7,11 +16,11 @@
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
 }
-#mainSlide .cloud.first {
+#home .cloud.first.animation {
     animation-name: cloud1Floating;
     -webkit-animation-name: cloud1Floating;
 }
-#mainSlide .cloud.second {
+#home .cloud.second.animation {
     animation-name: cloud2Floating;
     -webkit-animation-name: cloud2Floating;
 }
@@ -180,8 +189,24 @@
     }
 }
 
-#tickets img.front,
-#tickets img.frontShadow{
+#home header nav a{
+    transition: color .2s;
+    -webkit-transition: color .2s;
+}
+#home header nav a:hover{
+    color: #9b0909;;
+}
+#home header nav a.button{
+    transition: background .2s;
+    -webkit-transition: background .2s;
+}
+#home nav a.button:hover{
+    background-color: rgba(166, 16, 16, 1);
+    color: #fff;
+}
+
+#ticketsBlock img.front,
+#ticketsBlock img.frontShadow{
     transform: rotate(-25deg);
     -webkit-transform: rotate(-25deg);
     transform-origin: left;
@@ -191,16 +216,15 @@
     transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.5);
     -webkit-transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.5);
 }
-#tickets img.front.end,
-#tickets img.frontShadow.end{
+#ticketsBlock img.front.end,
+#ticketsBlock img.frontShadow.end{
     transform: rotate(-8deg);
     -webkit-transform: rotate(-8deg);
 }
-#tickets img.frontShadow{
-
-}
-#tickets img.frontShadow.end{
-
+#ticketsBlock img.front.hover,
+#ticketsBlock img.frontShadow.hover{
+    transform: rotate(-4deg);
+    -webkit-transform: rotate(-4deg);
 }
 
 #shaft{
@@ -213,7 +237,6 @@
 #shaft.end{
     height: 225px;
 }
-
 #pendulum{
     opacity: 0;
     transform: rotate(-90deg);
@@ -231,4 +254,83 @@
     opacity: 1;
     transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
+}
+
+#circles .popOverBlock .circle{
+    transition: background .2s;
+    -webkit-transition: background .2s;
+}
+#circles .popOverBlock .circle:hover,
+#circles .popOverBlock.end .circle{
+    background-color: #a71e1e;
+}
+    #circles .popOverBlock .circle a{
+        transition: color .2s;
+        -webkit-transition: color .2s;
+    }
+    #circles .popOverBlock .circle:hover a,
+    #circles .popOverBlock.end .circle a{
+        color: #fff;
+    }
+    #circles .popOverBlock .circle .arrow{
+        transition: background .2s;
+        -webkit-transition: background .2s;
+    }
+    #circles .popOverBlock .circle:hover .arrow{
+        background: url("img/downHover.png") no-repeat;
+    }
+    #circles .popOverBlock.end .circle .arrow{
+        background: url("img/close.png") no-repeat;
+        height: 11px;
+        margin-left: -5px;
+        width: 11px;
+    }
+    #venue .marker{
+        opacity: 0;
+        transform: translate3d(0, -170px, 0);
+        -webkit-transform: translate3d(0, -170px, 0);
+        transition: transform .4s, opacity .4s;
+        -webkit-transition: -webkit-transform .4s, opacity .4s;
+        transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.2);
+        -webkit-transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.2);
+    }
+    #venue .marker.end{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+        #venue .marker img{
+             animation: rotating 2s linear infinite;
+             -webkit-animation: rotating 2s linear infinite;
+        }
+        @keyframes rotating {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes rotating {
+            from{
+                -webkit-transform: rotate(0deg);
+            }
+            to{
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+#circles .popOverBlock .popOver{
+    opacity: 0;
+    transform: perspective(100em) translateY(-28px) scale(1, 0) rotateX(90deg);
+    -webkit-transform: perspective(100em) translateY(-28px) scale(1, 0) rotateX(90deg);
+    transform-origin: top;
+    -webkit-transform-origin: top;
+    transition: transform .4s, opacity .4s;
+    -webkit-transition: -webkit-transform .2s, opacity .2s;
+}
+#circles .popOverBlock.end .popOver{
+    opacity: 1;
+    transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
+    -webkit-transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
 }

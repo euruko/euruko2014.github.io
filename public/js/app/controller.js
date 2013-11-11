@@ -4,8 +4,10 @@ MainController = Backbone.Controller.extend({
     },
     initialize: function(){},
     slide: function(slide){
-        //TODO: scroll to 'slide'
         this.mainView = this.layout.createView('main');
-        this.layout.showRegion({content: this.mainView}, {transition: 'dissolve'});
+        this.mainView.once('rendered', function(){
+            if (slide) this.scrollTo('#'+slide);
+        });
+        this.layout.showRegion({content: this.mainView}/*, {transition: 'dissolve'}*/);
     }
 });

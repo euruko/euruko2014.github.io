@@ -1,11 +1,11 @@
-@media (max-height: 900px){
+@media (min-height: 700px) and (max-height: 900px){
     #logo{
-        width: 120px;
+        width: 160px;
     }
-    #mainSlide .cloud.first{
+    #home .cloud.first{
         top: 5%;
     }
-    #mainSlide .cloud.second{
+    #home .cloud.second{
         top: 15%;
     }
 }
