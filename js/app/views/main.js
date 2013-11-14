@@ -50,12 +50,13 @@ var MainView = Backbone.View.extend({
             nextSlideInd = down ? this.currentSlide + 1 : this.currentSlide - 1,
             nextSlide = this.$slides[nextSlideInd];
         if (nextSlide) {
-            if ((down && nextSlide.offsetTop <= vOffset) || (!down && this.$slides[this.currentSlide].offsetTop >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset == this.el.scrollHeight - window.innerHeight)){
+            if ((down && nextSlide.offsetTop <= vOffset) || (!down && this.$slides[this.currentSlide].offsetTop >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset == this.el.scrollHeight - window.innerHeight + 1)){
                 this.currentSlide = nextSlideInd;
                 this.module.controller.navigate(nextSlideInd ? nextSlide.id+'/' : '');
             }
         }
         this._cloudsParalax(vOffset, down, Math.abs(delta));
+        this._commonAnimation(vOffset, 'about', 0.1, '.stalactites');
         this._commonAnimation(vOffset, 'tickets', .5, '#ticketsBlock');
         this._commonAnimation(vOffset, 'venue', .7, '.marker');
         this.vOffset = vOffset;

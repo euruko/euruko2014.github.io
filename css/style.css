@@ -177,13 +177,13 @@ body.modal #modal{
                 text-transform: uppercase;
             }
 #home{
-    background: url("img/mainSlideBg.jpg") no-repeat;
+    background: url("img/home/mainSlideBg.jpg") no-repeat;
     background-size: 100% 100%;
     height: 90%;
     z-index: 10;
 }
     #home .img{
-        background: url("img/mainSlideImg.png") no-repeat center bottom;
+        background: url("img/home/mainSlideImg.png") no-repeat center bottom;
         background-size: auto auto;
         bottom: -64px;
         height: 652px;
@@ -243,12 +243,12 @@ body.modal #modal{
         right: 0;
     }
 #about{
-    background: url("img/aboutSlideBg.jpg") no-repeat center top;
+    background: url("img/about/aboutSlideBg.jpg") no-repeat center top;
     height: 632px;
     z-index: 9;
 }
     #about .img{
-        background: url("img/aboutSlideImg.png") no-repeat center;
+        background: url("img/about/aboutSlideImg.png") no-repeat center;
         bottom: -45px;
         height: 47px;
         width: 100%;
@@ -268,31 +268,47 @@ body.modal #modal{
             }
         #about .stalactites{
             display: block;
+            height: 632px;
             position: absolute;
             top: 0;
         }
-        #stalactite1{
-            left: -123px;
-        }
-        #stalactite2{
-            left: -32px;
-        }
-        #stalactite3{
-            right: 161px;
-        }
-        #stalactite4{
-            right: -54px;
-        }
-        #stalactite5{
-            right: -112px;
-        }
+            #about .stalactites img{
+                position: absolute;
+                left: 0;
+            }
+            #about .stalactites img:first-child{
+                top: 0;
+            }
+            #about .stalactites img:last-child{
+                bottom: 0;
+            }
+            #stalactite1{
+                left: -123px;
+                width: 38px;
+            }
+            #stalactite2{
+                left: -32px;
+                width: 23px;
+            }
+            #stalactite3{
+                right: 139px;
+                width: 22px;
+            }
+            #stalactite4{
+                right: -54px;
+                width: 28px;
+            }
+            #stalactite5{
+                right: -112px;
+                width: 59px;
+            }
 #tickets{
-    background: url("img/ticketsSlideBg.jpg") no-repeat center top;
+    background: url("img/tickets/ticketsSlideBg.jpg") no-repeat center top;
     height: 744px;
     z-index: 8;
 }
     #tickets .img{
-        background: url("img/ticketsSlideImg.png") no-repeat center;
+        background: url("img/tickets/ticketsSlideImg.png") no-repeat center;
         bottom: -103px;
         height: 105px;
         width: 100%;
@@ -352,7 +368,7 @@ body.modal #modal{
                 top: 323px;
             }
                 #shaft{
-                    background: url('img/shaft.png') no-repeat;
+                    background: url('img/tickets/shaft.png') no-repeat;
                     width: 113px;
                 }
                 #pendulum{
@@ -362,7 +378,7 @@ body.modal #modal{
                     width: 122px;
                 }
                     #arrowhead{
-                        background: url('img/arrowhead.png') no-repeat;
+                        background: url('img/tickets/arrowhead.png') no-repeat;
                         float: right;
                         height: 27px;
                         transform: rotate(-90deg);
@@ -370,7 +386,7 @@ body.modal #modal{
                         width: 19px;
                     }
 #venue{
-    background: url("img/venueSlideBg.jpg") no-repeat center top;
+    background: url("img/venue/venueSlideBg.jpg") no-repeat center top;
     height: 842px;
     position: relative;
     z-index: 7;
@@ -416,7 +432,7 @@ body.modal #modal{
                         text-transform: uppercase;
                     }
                     #circles .popOverBlock .circle .arrow{
-                        background: url("img/down.png") no-repeat;
+                        background: url("img/venue/down.png") no-repeat;
                         bottom: 27px;
                         height: 9px;
                         left: 50%;
@@ -456,7 +472,7 @@ body.modal #modal{
                         text-align: justify;
                     }
         #venue .marker{
-            background: url('img/marker.png') no-repeat;
+            background: url('img/venue/marker.png') no-repeat;
             height: 50px;
             margin: 0 auto 12px auto;
             padding: 10px 0 0 9px;

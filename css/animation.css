@@ -205,6 +205,41 @@ body.modal #modal{
     color: #fff;
 }
 
+#about .stalactites img:first-child{
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transition: transform .5s;
+    -webkit-transition: -webkit-transform .5s;
+}
+#stalactite1 img.end:first-child{
+    transform: translate3d(0, 474px, 0);
+    -webkit-transform: translate3d(0, 474px, 0);
+}
+#stalactite2 img.end:first-child{
+    transform: translate3d(0, 494px, 0);
+    -webkit-transform: translate3d(0, 494px, 0);
+    transition-delay: .1s;
+    -webkit-transition-delay: .1s;
+}
+#stalactite3 img.end:first-child{
+    transform: translate3d(0, 531px, 0);
+    -webkit-transform: translate3d(0, 531px, 0);
+    transition-delay: .4s;
+    -webkit-transition-delay: .4s;
+}
+#stalactite4 img.end:first-child{
+    transform: translate3d(0, 496px, 0);
+    -webkit-transform: translate3d(0, 496px, 0);
+    transition-delay: .2s;
+    -webkit-transition-delay: .2s;
+}
+#stalactite5 img.end:first-child{
+    transform: translate3d(0, 532px, 0);
+    -webkit-transform: translate3d(0, 532px, 0);
+    transition-delay: .3s;
+    -webkit-transition-delay: .3s;
+}
+
 #ticketsBlock img.front,
 #ticketsBlock img.frontShadow{
     transform: rotate(-25deg);
@@ -277,10 +312,10 @@ body.modal #modal{
         -webkit-transition: background .2s;
     }
     #circles .popOverBlock .circle:hover .arrow{
-        background: url("img/downHover.png") no-repeat;
+        background: url("img/venue/downHover.png") no-repeat;
     }
     #circles .popOverBlock.end .circle .arrow{
-        background: url("img/close.png") no-repeat;
+        background: url("img/venue/close.png") no-repeat;
         height: 11px;
         margin-left: -5px;
         width: 11px;
