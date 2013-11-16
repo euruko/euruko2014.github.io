@@ -1,96 +1,96 @@
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Black.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Black.otf')  format('OpenType');
     font-style: normal;
     font-weight: 800;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Bold.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Bold.otf')  format('OpenType');
     font-style: normal;
     font-weight: bold; /* 700 */
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-BoldIt.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-BoldIt.otf')  format('OpenType');
     font-style: italic;
     font-weight: bold;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Extrabold.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Extrabold.otf')  format('OpenType');
     font-style: normal;
     font-weight: 900;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Light.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Light.otf')  format('OpenType');
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-LightItalic.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-LightItalic.otf')  format('OpenType');
     font-style: italic;
     font-weight: 200;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Regular.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Regular.otf')  format('OpenType');
     font-style: normal;
     font-weight: normal; /* 400 */
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-RegularItalic.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-RegularItalic.otf')  format('OpenType');
     font-style: italic;
     font-weight: normal; /* 400 */
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-Semibold.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-Semibold.otf')  format('OpenType');
     font-style: normal;
     font-weight: 600;
 }
 @font-face {
     font-family: 'Proxima Nova';
-    src: url('fonts/ProximaNova-SemiboldItalic.otf')  format('OpenType'),
+    src: url('fonts/ProximaNova-SemiboldItalic.otf')  format('OpenType');
     font-style: italic;
     font-weight: 600;
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-Light.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-Light.otf')  format('OpenType');
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-LightIt.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-LightIt.otf')  format('OpenType');
     font-style: italic;
     font-weight: 200;
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-Regular.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-Regular.otf')  format('OpenType');
     font-style: normal;
     font-weight: normal; /* 400 */
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-RegularIt.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-RegularIt.otf')  format('OpenType');
     font-style: italic;
     font-weight: normal; /* 400 */
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-Semibold.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-Semibold.otf')  format('OpenType');
     font-style: normal;
     font-weight: 600;
 }
 @font-face {
     font-family: 'Proxima Nova Condenced';
-    src: url('fonts/ProximaNovaCond-SemiboldIt.otf')  format('OpenType'),
+    src: url('fonts/ProximaNovaCond-SemiboldIt.otf')  format('OpenType');
     font-style: italic;
     font-weight: 600;
 }
@@ -124,13 +124,6 @@ body {
 body.modal{
     overflow-y: hidden;
 }
-body.modal #mainView{
-    overflow-y: hidden;
-}
-body.modal #modal{
-    display: block;
-}
-
 #mainView{
     height: inherit;
     overflow-x: hidden;
@@ -138,19 +131,9 @@ body.modal #modal{
     width: inherit;
     -webkit-overflow-scrolling: touch
 }
-#modal{
-    background-color: rgba(0, 0, 0, .6);
-    display: none;
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 11;
+body.modal #mainView{
+    overflow-y: hidden;
 }
-    #modal img{
-        display: block;
-    }
 .slide{
     background-size: auto 100%;
     position: relative;
@@ -258,6 +241,9 @@ body.modal #modal{
         padding-top: 123px;
         position: relative;
     }
+        #about header{
+            margin-bottom: 35px;
+        }
         #about article{
             margin: 30px auto 0 auto;
             width: 880px;
@@ -396,7 +382,7 @@ body.modal #modal{
         padding-top: 170px;
         position: relative;
     }
-        header{
+        #venue .content header{
             margin-bottom: 55px;
         }
         #circles{
@@ -473,6 +459,7 @@ body.modal #modal{
                     }
         #venue .marker{
             background: url('img/venue/marker.png') no-repeat;
+            cursor: pointer;
             height: 50px;
             margin: 0 auto 12px auto;
             padding: 10px 0 0 9px;
@@ -487,6 +474,7 @@ body.modal #modal{
             background-color: rgba(43, 77, 104, .32);
             border-radius: 13px;
             color: #fff;
+            cursor: pointer;
             font-size: 14px;
             height: 30px;
             line-height: 30px;
@@ -494,3 +482,40 @@ body.modal #modal{
             padding: 0 13px;
             width: 184px;
         }
+#viewer{
+    height: 80%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    width: 80%;
+    z-index: 12;
+}
+    #viewer img{
+        max-height: 100%;
+        max-width: 100%;
+    }
+    #map{
+        height: 100%;
+        width: 100%;
+    }
+        #map img{ /* fix for map controls */
+            max-height: inherit;
+            max-width: inherit;
+        }
+#modal{
+    background-color: rgba(0, 0, 0, .6);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    width: 100%;
+    z-index: 11;
+}
+body.modal #modal{
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}

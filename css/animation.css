@@ -1,12 +1,3 @@
-#modal{
-    opacity: 0;
-    transition: opacity 2s .2s;
-    -webkit-transition: opacity 2s;
-}
-body.modal #modal{
-    opacity: 1;
-}
-
 #home .cloud.first.animation,
 #home .cloud.second.animation{
     animation-iteration-count: infinite;
@@ -362,10 +353,26 @@ body.modal #modal{
     transform-origin: top;
     -webkit-transform-origin: top;
     transition: transform .4s, opacity .4s;
-    -webkit-transition: -webkit-transform .2s, opacity .2s;
+    -webkit-transition: -webkit-transform .4s, opacity .4s;
 }
 #circles .popOverBlock.end .popOver{
     opacity: 1;
     transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
     -webkit-transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
+}
+#viewer{
+    transition: transform .4s;
+    -webkit-transition: -webkit-transform .4s;
+}
+body.modal #viewer{
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+#modal{
+    opacity: 0;
+    transition: opacity .2s .4s;
+    -webkit-transition: opacity .2s .4s;
+}
+body.modal #modal{
+    opacity: 1;
 }

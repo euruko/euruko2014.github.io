@@ -10,9 +10,11 @@ var MainView = Backbone.View.extend({
         'scroll': '_scroll',
         'click .popOverBlock': '_popOver',
         'click .popOver img': '_showImage',
-        'click #modal': '_closeModal',
+        'click #modal, #viewer': '_closeViewer',
         'mouseover #ticketsBlock': '_ticketAnimation',
-        'mouseout #ticketsBlock': '_ticketAnimation'
+        'mouseout #ticketsBlock': '_ticketAnimation',
+        'click .marker, .address': '_renderMap',
+        'click #map': '_stopPropagation'
     },
     vOffset: 0, // this.el current scrollTop
     delta: 0, // difference between new scrollTop and vOffset when scrolling
@@ -24,6 +26,7 @@ var MainView = Backbone.View.extend({
         this.on('rendered', function(){
             this._prepareSlides();
             this._prepareClouds();
+            this.viewer = this.$('#viewer');
         });
     },
     scrollTo: function(hash){
@@ -128,29 +131,29 @@ var MainView = Backbone.View.extend({
     _popOver: function(e){
         $(e.currentTarget).toggleClass('end');
     },
-    _calculateImgSize: function(image){
-        var imgDim = image.naturalWidth / image.naturalHeight,
-            winDim = window.innerWidth / window.innerHeight,
-            coef = .8;
-        if (winDim > imgDim){ //an image is narrower than window
-            image.height = window.innerHeight * coef;
-            image.style.margin = Math.abs(window.innerHeight - image.height) / 2 +'px 0 0 '+Math.abs(window.innerWidth - image.height * imgDim) / 2 +'px';
-        } else{ //an image is wider than window
-            image.width = window.innerWidth * coef;
-            image.style.margin = Math.abs(window.innerHeight - image.width / imgDim) / 2 +'px 0 0 '+Math.abs(window.innerWidth - image.width) / 2+'px';
-        }
+    _calculateViewerMargins: function(){
+        var el = this.viewer[0];
+        el.style.margin = (window.innerHeight - el.offsetHeight) / 2 + 'px 0 0 ' + (window.innerWidth - el.offsetWidth) / 2 + 'px';
+    },
+    _showViewer: function(el){
+        this.viewer.html(el);
+        this._calculateViewerMargins();
+        document.body.classList.toggle('modal');
     },
     _showImage: function(e){
         e.stopPropagation();
-        var image = document.createElement('img');
-        image.src = e.currentTarget.src;
-        this._calculateImgSize(image);
-        this.$('#modal').html(image);
-        document.body.classList.toggle('modal');
+        var image = document.createElement('img'),
+            src = e.currentTarget.src;
+        image.onload = this._onImgLoad.bind(this);
+        image.src = src.substring(0, src.length - 4) + '_big.jpg';
     },
-    _closeModal: function(){
-        var body = document.body;
-        body.classList.toggle('modal');
+    _onImgLoad: function(e){
+        var el = e.currentTarget;
+        this._showViewer(el);
+    },
+    _closeViewer: function(){
+        this.viewer.removeClass('show');
+        document.body.classList.toggle('modal');
     },
     _ticketAnimation: function(e){
         if (this.isticketsAnimated){
@@ -158,5 +161,31 @@ var MainView = Backbone.View.extend({
             if (e.type == 'mouseover') els.addClass('hover'); // toggleClass results bug in some cases
             else els.removeClass('hover');
         }
+    },
+    _renderMap: function(e){
+        var elem = e.currentTarget;
+        
+        if (!this.mapEl){
+            var el = this.mapEl = document.createElement('div');
+            el.id = 'map';
+            var lt = 50.449983,
+                ln = 30.527936,
+                map = new google.maps.Map(el, {
+                    zoom: 17,
+                    center: new google.maps.LatLng(lt, ln),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    streetViewControl: false
+                }),
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lt, ln),
+                    map: map,
+                    title: '1 Instytutska St, Kyiv',
+                    draggable: false
+                });
+        }
+        this._showViewer(this.mapEl);
+    },
+    _stopPropagation: function(e){
+        e.stopPropagation();
     }
 });
