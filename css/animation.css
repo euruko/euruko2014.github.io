@@ -180,18 +180,19 @@
     }
 }
 
-#home header nav a{
+#navView a{
     transition: color .2s;
     -webkit-transition: color .2s;
 }
-#home header nav a:hover{
+#navView a:hover,
+#navView a.active{
     color: #9b0909;;
 }
-#home header nav a.button{
+#navView a.button{
     transition: background .2s;
     -webkit-transition: background .2s;
 }
-#home nav a.button:hover{
+#navView a.button:hover{
     background-color: rgba(166, 16, 16, 1);
     color: #fff;
 }
@@ -215,20 +216,20 @@
 #stalactite3 img.end:first-child{
     transform: translate3d(0, 531px, 0);
     -webkit-transform: translate3d(0, 531px, 0);
-    transition-delay: .4s;
-    -webkit-transition-delay: .4s;
+    transition-delay: .5s;
+    -webkit-transition-delay: .5s;
 }
 #stalactite4 img.end:first-child{
     transform: translate3d(0, 496px, 0);
     -webkit-transform: translate3d(0, 496px, 0);
-    transition-delay: .2s;
-    -webkit-transition-delay: .2s;
+    transition-delay: .3s;
+    -webkit-transition-delay: .3s;
 }
 #stalactite5 img.end:first-child{
     transform: translate3d(0, 532px, 0);
     -webkit-transform: translate3d(0, 532px, 0);
-    transition-delay: .3s;
-    -webkit-transition-delay: .3s;
+    transition-delay: 1s;
+    -webkit-transition-delay: 1s;
 }
 
 #ticketsBlock img.front,
@@ -345,6 +346,14 @@
                 -webkit-transform: rotate(360deg);
             }
         }
+    #venue .address{
+        transition: background-color .2s;
+        -webkit-transition: background-color .2s;
+    }
+    #venue .marker:hover + .address,
+    #venue .address:hover{
+        background-color: #a71e1e;
+    }
 
 #circles .popOverBlock .popOver{
     opacity: 0;
@@ -360,6 +369,21 @@
     transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
     -webkit-transform: perspective(100em) translateY(0) scale(1, 1) rotateX(0deg);
 }
+    #circles .popOverBlock .popOver figure:before{
+        background-color: rgba(0, 0, 0, 0);
+        content: "";
+        display: block;
+        left: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        transition: background-color .2s;
+        -webkit-transition: background-color .2s;
+        width: 100%;
+    }
+    #circles .popOverBlock .popOver figure:hover:before{
+        background-color: rgba(0, 0, 0, .2);
+    }
 #viewer{
     transition: transform .4s;
     -webkit-transition: -webkit-transform .4s;

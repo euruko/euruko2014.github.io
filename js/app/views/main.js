@@ -6,15 +6,15 @@ var MainView = Backbone.View.extend({
         path: 'js/app/templates/main.html'
     },
     events: {
-        'click .nav': '_scrollTo',
-        'scroll': '_scroll',
+//        'scroll': '_scroll',
         'click .popOverBlock': '_popOver',
-        'click .popOver img': '_showImage',
+        'click .popOver figure': '_showImage',
         'click #modal, #viewer': '_closeViewer',
         'mouseover #ticketsBlock': '_ticketAnimation',
         'mouseout #ticketsBlock': '_ticketAnimation',
         'click .marker, .address': '_renderMap',
-        'click #map': '_stopPropagation'
+        'click #map': '_stopPropagation',
+        'click #circles .popOver': '_stopPropagation'
     },
     vOffset: 0, // this.el current scrollTop
     delta: 0, // difference between new scrollTop and vOffset when scrolling
@@ -32,28 +32,24 @@ var MainView = Backbone.View.extend({
     scrollTo: function(hash){
         var el = this.$(hash.substring(0, hash.length - 1))[0],
             duration = 200,
-            val = this.el.scrollTop,// this.el.scrollTop never can be assigned value more than screen allows. In this cases an animation will never ends without this var
-            newVal = el.offsetTop+1,
+            val = window.scrollY,// this.el.scrollTop never can be assigned value more than screen allows. In this cases an animation will never ends without this var
+            newVal = this._calculateOffset(el),
             step = newVal / duration * 10, // 10 is setTimeout minimum value
             animation = function(){
                 val += step;
-                this.el.scrollTop = val;
+                window.scrollTo(0, val);
                 if (val < newVal) setTimeout(animation, 10);
             }.bind(this);
         animation();
     },
-    _scrollTo: function(e){
-        e.preventDefault();
-        this.scrollTo(e.currentTarget.hash)
+    _calculateOffset: function(el){
+        return window.innerHeight > el.offsetHeight ? el.offsetTop - Math.ceil((window.innerHeight - el.offsetHeight) / 2) : el.offsetTop;
     },
-    _scroll: function(e){
-        var vOffset = e.target.scrollTop,
-            delta = vOffset - this.vOffset,
-            down = delta > 0,
-            nextSlideInd = down ? this.currentSlide + 1 : this.currentSlide - 1,
+    scroll: function(vOffset, down, delta){
+        var nextSlideInd = down ? this.currentSlide + 1 : this.currentSlide - 1,
             nextSlide = this.$slides[nextSlideInd];
         if (nextSlide) {
-            if ((down && nextSlide.offsetTop <= vOffset) || (!down && this.$slides[this.currentSlide].offsetTop >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset == this.el.scrollHeight - window.innerHeight + 1)){
+            if ((down && this._calculateOffset(nextSlide) - 1 <= vOffset) || (!down && this._calculateOffset(this.$slides[this.currentSlide]) >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset >= this.el.scrollHeight - window.innerHeight)){
                 this.currentSlide = nextSlideInd;
                 this.module.controller.navigate(nextSlideInd ? nextSlide.id+'/' : '');
             }
@@ -68,6 +64,7 @@ var MainView = Backbone.View.extend({
         this.slides = {};
         this.$slides = this.$('.slide');
         this.$slides.each(function(key, slide){
+            if (!key) slide.style.height = window.innerHeight * .9 +'px';
             this.slides[slide.id] = slide;
         }.bind(this));
     },
@@ -122,7 +119,7 @@ var MainView = Backbone.View.extend({
             var slide = this.slides[slideId],
                 pos = (baseElSelector ? slide.querySelectorAll(baseElSelector)[0] : slide).getBoundingClientRect().top,
                 minOffset = window.innerHeight * coef;
-            if (pos <= minOffset){
+            if (pos <= minOffset || this.el.scrollTop + window.innerHeight + 1 >= this.el.scrollHeight){
                 $(slide).find('.animation').addClass('end');
                 this[prop] = true;
             }
@@ -131,25 +128,43 @@ var MainView = Backbone.View.extend({
     _popOver: function(e){
         $(e.currentTarget).toggleClass('end');
     },
-    _calculateViewerMargins: function(){
-        var el = this.viewer[0];
+    _calculateViewerStyles: function(elem){
+        var el = this.viewer[0],
+            pos = elem.getBoundingClientRect(),
+            x = pos.left - window.innerWidth * .1 + elem.offsetWidth / 2,
+            y = pos.top - window.innerHeight * .1 + elem.offsetHeight / 2;
         el.style.margin = (window.innerHeight - el.offsetHeight) / 2 + 'px 0 0 ' + (window.innerWidth - el.offsetWidth) / 2 + 'px';
+        el.style.transformOrigin = el.style.webkitTransformOrigin = x+'px '+y+'px';
     },
-    _showViewer: function(el){
+    _showViewer: function(el, originEl){
         this.viewer.html(el);
-        this._calculateViewerMargins();
+        this._calculateViewerStyles(originEl);
         document.body.classList.toggle('modal');
     },
     _showImage: function(e){
         e.stopPropagation();
         var image = document.createElement('img'),
-            src = e.currentTarget.src;
-        image.onload = this._onImgLoad.bind(this);
+            preview = e.currentTarget.childNodes[1],
+            src = preview.src;
+        image.onload = this._onImgLoad.bind(this, preview);
         image.src = src.substring(0, src.length - 4) + '_big.jpg';
     },
-    _onImgLoad: function(e){
+    _onImgLoad: function(originEl, e){
         var el = e.currentTarget;
-        this._showViewer(el);
+        this._calculateImageOffset(el);
+        this._showViewer(el, originEl);
+    },
+    _calculateImageOffset: function(image){
+        var imgDim = image.naturalWidth / image.naturalHeight,
+            viewer = this.viewer[0],
+            winDim = viewer.offsetWidth / viewer.offsetHeight;
+        if (winDim > imgDim){ //an image is narrower than window
+            image.height = viewer.offsetHeight;
+            image.style.marginLeft = Math.abs(viewer.offsetWidth - image.height * imgDim) / 2 +'px';
+        } else{ //an image is wider than window
+            image.width = viewer.offsetWidth;
+            image.style.marginTop = Math.abs(viewer.offsetHeight - image.width / imgDim) / 2 +'px';
+        }
     },
     _closeViewer: function(){
         this.viewer.removeClass('show');
@@ -163,8 +178,6 @@ var MainView = Backbone.View.extend({
         }
     },
     _renderMap: function(e){
-        var elem = e.currentTarget;
-        
         if (!this.mapEl){
             var el = this.mapEl = document.createElement('div');
             el.id = 'map';
@@ -183,7 +196,7 @@ var MainView = Backbone.View.extend({
                     draggable: false
                 });
         }
-        this._showViewer(this.mapEl);
+        this._showViewer(this.mapEl, e.currentTarget);
     },
     _stopPropagation: function(e){
         e.stopPropagation();

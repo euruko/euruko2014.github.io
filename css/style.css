@@ -108,7 +108,6 @@ a{
 }
 html {
     font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
-    height: 100%;
     overflow-x: hidden;
     width: 100%;
     color: #4b4b4b;
@@ -116,7 +115,6 @@ html {
 body {
     background-color: #fff;
     font-size: 16px;
-    height: inherit;
     overflow-x: hidden;
     text-align: center;
     width: inherit;
@@ -124,8 +122,41 @@ body {
 body.modal{
     overflow-y: hidden;
 }
+#header{
+    left: 50%;
+    margin: 60px 0 0 -495px;
+    position: absolute;
+    top: 0;
+    width: 990px;
+    z-index: 11;
+}
+    #navView{
+        float: right;
+    }
+        #navView a{
+            color: #4b4b4b;
+            font-size: 13px;
+            font-weight: 200;
+            letter-spacing: 1px;
+            margin-right: 24px;
+            text-transform: uppercase;
+        }
+        #navView a.button{
+            background-color: rgba(166, 16, 16, .7);
+            border-radius: 45px;
+            color: #fff;
+            display: inline-block;
+            height: 30px;
+            line-height: 32px;
+            width: 90px;
+        }
+#content{
+    /*height: inherit;*/
+    overflow-x: hidden;
+    width: inherit;
+}
 #mainView{
-    height: inherit;
+    /*height: inherit;*/
     overflow-x: hidden;
     overflow-y: auto;
     width: inherit;
@@ -171,28 +202,6 @@ body.modal #mainView{
         bottom: -64px;
         height: 652px;
     }
-    #home header{
-        float: right;
-        margin-top: 60px;
-        padding-left: 15px;
-    }
-        #home header nav a{
-            color: #4b4b4b;
-            font-size: 13px;
-            font-weight: 200;
-            letter-spacing: 1px;
-            margin-right: 24px;
-            text-transform: uppercase;
-        }
-        #home nav a.button{
-            background-color: rgba(166, 16, 16, .7);
-            border-radius: 45px;
-            color: #fff;
-            display: inline-block;
-            height: 30px;
-            line-height: 32px;
-            width: 90px;
-        }
     #home article{
         height: 300px;
         left: 50%;
@@ -254,7 +263,7 @@ body.modal #mainView{
             }
         #about .stalactites{
             display: block;
-            height: 632px;
+            height: 631px;
             position: absolute;
             top: 0;
         }
@@ -446,12 +455,16 @@ body.modal #mainView{
                         top: -12px;
                         width: 0;
                     }
-                    #circles .popOverBlock .popOver img{
+                    #circles .popOverBlock .popOver figure{
                         cursor: pointer;
                         height: 131px;
                         margin-bottom: 25px;
+                        position: relative;
                         width: 229px;
                     }
+                        #circles .popOverBlock .popOver figure img{
+                            width: 100%;
+                        }
                     #circles .popOverBlock .popOver p{
                         font-size: 14px;
                         line-height: 19px;
@@ -485,14 +498,15 @@ body.modal #mainView{
 #viewer{
     height: 80%;
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     transform: scale(0);
     -webkit-transform: scale(0);
     width: 80%;
-    z-index: 12;
+    z-index: 13;
 }
     #viewer img{
+        display: block;
         max-height: 100%;
         max-width: 100%;
     }
@@ -513,7 +527,7 @@ body.modal #mainView{
     transform: scale(0);
     -webkit-transform: scale(0);
     width: 100%;
-    z-index: 11;
+    z-index: 12;
 }
 body.modal #modal{
     transform: scale(1);

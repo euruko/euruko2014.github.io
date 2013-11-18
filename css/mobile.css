@@ -1,0 +1,23 @@
+@media (max-width: 1024px){
+    #home{
+        background: url("img/mobile/mainSlideBg.jpg") no-repeat;
+    }
+        #home .img{
+            background: url("img/mobile/mainSlideImg.png") no-repeat center bottom;
+        }
+    #about{
+        background: url("img/mobile/aboutSlideBg.jpg") no-repeat center top;
+    }
+        #about .img{
+            background: url("img/mobile/aboutSlideImg.png") no-repeat center;
+        }
+    #tickets{
+        background: url("img/mobile/ticketsSlideBg.jpg") no-repeat center top;
+    }
+        #tickets .img{
+            background: url("img/mobile/ticketsSlideImg.png") no-repeat center;
+        }
+    #venue{
+        background: url("img/mobile/venueSlideBg.jpg") no-repeat center top;
+    }
+}
