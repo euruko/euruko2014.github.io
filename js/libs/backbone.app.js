@@ -1,7 +1,72 @@
+'use strict';
+_.template = function(text, data, options) { // extended to use context in options object
+    var reNoMatch = /($^)/,
+        reUnescapedString = /['\n\r\t\u2028\u2029\\]/g,
+        stringEscapes = {
+            '\\': '\\',
+            "'": "'",
+            '\n': 'n',
+            '\r': 'r',
+            '\t': 't',
+            '\u2028': 'u2028',
+            '\u2029': 'u2029'
+        };
+    function escapeStringChar(match) {
+        return '\\' + stringEscapes[match];
+    }
+    var settings = _.templateSettings;
+    text = String(text || '');
+    options = _.defaults({}, options, settings);
+    var index = 0,
+        source = "__p += '",
+        variable = options.variable;
+    var reDelimiters = RegExp(
+        (options.escape || reNoMatch).source + '|' +
+            (options.interpolate || reNoMatch).source + '|' +
+            (options.evaluate || reNoMatch).source + '|$'
+        , 'g');
+    text.replace(reDelimiters, function(match, escapeValue, interpolateValue, evaluateValue, offset) {
+        source += text.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+        if (escapeValue) {
+            source += "' +\n_.escape(" + escapeValue + ") +\n'";
+        }
+        if (evaluateValue) {
+            source += "';\n" + evaluateValue + ";\n__p += '";
+        }
+        if (interpolateValue) {
+            source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+        }
+        index = offset + match.length;
+        return match;
+    });
+    source += "';\n";
+    if (!variable) {
+        variable = 'obj';
+        source = 'with (' + variable + ' || {}) {\n' + source + '\n}\n';
+    }
+    source = 'function(' + variable + ') {\n' +
+        "var __t, __p = '', __j = Array.prototype.join;\n" +
+        "function print() { __p += __j.call(arguments, '') }\n" +
+        source +
+        'return __p\n}';
+    try {
+        var result = Function('_', 'return ' + source)(_);
+    } catch(e) {
+        e.source = source;
+        throw e;
+    }
+    if (data) return result.call(options.context || window, data);
+    var template = function(data) {
+        return result.call(options.context || window, data);
+    };
+    template.source = 'function(' + 'obj' + '){\n' + source + '}';
+    return template;
+};
+
 Backbone.Events.setInstance = function(arg){
     var ret = null;
     if (arg.constructor === Function) ret = new arg;
-    else if (arg.constructor === Object) ret = new arg.builder(arg.arguments);
+    else if (arg.constructor === Object) ret = new arg.builder(arg.args);
     return ret;
 };
 Backbone.Events.setMainOpts = function(array, obj){
@@ -13,7 +78,6 @@ Backbone.Events.setMainOpts = function(array, obj){
     }.bind(this));
     return obj;
 };
-
 Backbone.Module = function(){
     this.initialize(this._setOptions(arguments));
 };
@@ -137,13 +201,18 @@ Backbone.Controller = Backbone.Router.extend({
         var router = this;
         Backbone.history.route(route, function(fragment) {
             var args = router._extractParameters(route, fragment);
-            router.trigger('before'+name, args);
+            router.trigger('before:'+name, args);
             router.trigger('before', name, args);
             callback && callback.apply(router, args);
             router.trigger.apply(router, ['route:' + name].concat(args));
             router.trigger('route', name, args);
             Backbone.history.trigger('route', router, name, args);
         });
+        return this;
+    },
+    navigate: function(fragment, options) {
+        Backbone.history.navigate(fragment, options);
+        this.trigger('navigate', fragment);
         return this;
     },
     stop: function(){ // TODO: test this
@@ -243,21 +312,12 @@ _.extend(Backbone.Layout.prototype, Backbone.Events, {
             }.bind(this));
         }
     },
-    showHTML: function(){
-        var arg = arguments[0];
-        if (arguments.length >= 2 && arguments[0].constructor === String && this.regions[arg]) this.regions[arg].showHTML(arguments[1], arguments[2]);
-        else if (arguments.length <= 2 && arguments[0].constructor === Object){
-            _.each(arg, function(html, name){
-                this.regions[name].showHTML(html);
-            }.bind(this));
-        }
-    },
     showNodes: function(){
         var arg = arguments[0];
         if (arguments.length >= 2 && arguments[0].constructor === String && this.regions[arg]) this.regions[arg].showNodes(arguments[1], arguments[2]);
         else if (arguments.length <= 2 && arguments[0].constructor === Object){
-            _.each(arg, function(html, name){
-                this.regions[name].showNodes(html);
+            _.each(arg, function(node, name){
+                this.regions[name].showNode(node);
             }.bind(this));
         }
     },
@@ -320,6 +380,7 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
     view: null,
     templates: null,
     transition: null,
+    transitionSupported: false,
     oldView: null,
     initialize: function(){ return this },
     _setOptions: function(args){
@@ -330,8 +391,10 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
         if (obj) this.options = this.setMainOpts(sets, obj);
         if (this.el){
             this.$el = $(this.el);
-            if (!this.el instanceof HTMLElement) this.el = this.$el[0];
+            if (!(this.el instanceof HTMLElement)) this.el = this.$el[0];
         }
+        var el = document.documentElement;
+        this.transitionSupported = 'transition' in el.style || 'webkitTransition' in el.style;
         return args;
     },
     _removeView: function(){
@@ -342,20 +405,21 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
     },
     _render: function(view, transition){
         transition || (transition = null);
-        if (transition){
+        if (transition && this.transitionSupported){
             this.transition = transition;
+            if (this.oldView) this.oldView.remove(); // if next transition appears faster than previous finishes
             this.oldView = this.view;
         } else{
             this._removeView();
             this.transition = null;
             this.oldView = null;
         }
+        this.oldView = this.view;
         view.region = this;
         this.view = view;
-        this.view.render(); // view.render() will call region.render() when ready
     },
     render: function(html){
-        if (this.transition){
+        if (this.transition && this.transitionSupported){
             var transition = this.transition,
                 newView = this.view;
             newView.$el.addClass('transition '+transition+' new start');
@@ -365,6 +429,7 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
                     position = {left: oldView.el.offsetLeft, top: oldView.el.offsetTop};
                 oldView.$el.one('transitionend webkitTransitionEnd', function(){
                     oldView.remove();
+                    this.oldView = null;
                     newView.$el.removeClass('transition '+transition+' new end');
                 }.bind(this));
                 position.position = 'absolute';
@@ -377,30 +442,29 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
                     newView.$el.removeClass('transition '+transition+' new end');
                 }.bind(this));
             }
-        this.trigger('changed', this.region, this.view, this);
-            setTimeout(function(){
+            this.trigger('changed', this.region, this.view, this);
+            requestAnimationFrame(function(){
                 newView.$el.toggleClass('start end');
-            }, 0); //spike for timing
+            });
         } else{
             this.$el.html(html);
             this.trigger('changed', this.region, this.view, this);
         }
     },
-    show: function(view, opts){
+    _show: function(view, opts){
         opts || (opts = {});
-        if (!opts.once || !this.view) this._render(view, opts.transition);
+        if (!opts.once || !this.view) {
+            this._render(view, opts.transition);
+            return true;
+        }
+        return false;
     },
-    showHTML: function(html){
-        this.view = null;
-        this.clear();
-        this.$el.html(html);
-        this.trigger('changed', this.region, this.view, this);
+    show: function(view, opts){
+        if (this._show(view, opts)) this.view.render(); // view.render() will call region.render() when ready
     },
-    showNodes: function(nodes){
-        this.view = null;
-        this.clear();
-        this.$el.html(nodes);
-        this.trigger('changed', this.region, this.view, this);
+    showNode: function(node, opts){
+        var view = new Backbone.View({el: node});
+        if (this._show(view, opts)) this.render(view.el);
     },
     clear: function(opts){
         opts || (opts = {});
@@ -421,6 +485,7 @@ _.extend(Backbone.Region.prototype, Backbone.Events, {
 Backbone.View = Backbone.View.extend({
     renderObj: null,
     template: null,
+    rendered: false,
     _prepareEl: function(){
         if (this.collection) this.collection.view = this;
         if (this.model) this.model.view = this;
@@ -459,10 +524,12 @@ Backbone.View = Backbone.View.extend({
         } else this._show(obj);
     },
     _show: function(obj){
+        var opts = {context: this};
         if (this.region){
-            this.$el.html(_.template(this.region.templates[this.template.path], obj, this));
+            this.$el.html(_.template(this.region.templates[this.template.path], obj, opts));
             this.region.render(this.el);
-        } else this.$el.html(_.template(this.template.tpl, obj, this));
+        } else this.$el.html(_.template(this.template.tpl, obj, opts));
+        this.rendered = true;
         this.trigger('rendered', this.el);
     }
 });

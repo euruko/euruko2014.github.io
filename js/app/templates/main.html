@@ -1,14 +1,22 @@
+<% var cachePuncher = this.module.options.cachePuncher; %>
+<!--<nav id="sideNav">-->
+    <!--<a href="#home" class="nav home"></a>-->
+    <!--<a href="#about" class="nav about"></a>-->
+    <!--<a href="#tickets" class="nav tickets"></a>-->
+    <!--<a href="#venue" class="nav venue"></a>-->
+    <!--<div class="pointer" draggable="true"></div>-->
+<!--</nav>-->
 <section id="home" class="slide">
     <div class="img"></div>
     <div class="content">
         <article>
-            <img id="logo" src="css/img/home/logo.png">
+            <div id="logo"></div>
             <p>The annual European Ruby Conference will take place<br>
                 in Kyiv on 20<sup>th</sup>&mdash;21<sup>st</sup> of June, 2014.</p>
         </article>
     </div>
-    <img class="cloud first" src="css/img/home/cloud1.png">
-    <img class="cloud second" src="css/img/home/cloud2.png">
+    <div class="cloud first"></div>
+    <div class="cloud second"></div>
 </section>
 <section id="about" class="slide">
     <div class="content">
@@ -26,24 +34,24 @@
             <p>Come and love the fun!</p>
         </article>
         <div id="stalactite1" class="stalactites">
-            <img class="animation" src="css/img/about/stalactite1.png">
-            <img src="css/img/about/stalactite1overlay.jpg">
+            <div class="animation"></div>
+            <div></div>
         </div>
         <div id="stalactite2" class="stalactites">
-            <img class="animation" src="css/img/about/stalactite2.png">
-            <img src="css/img/about/stalactite2overlay.jpg">
+            <div class="animation"></div>
+            <div></div>
         </div>
         <div id="stalactite3" class="stalactites">
-            <img class="animation" src="css/img/about/stalactite3.png">
-            <img src="css/img/about/stalactite3overlay.jpg">
+            <div class="animation"></div>
+            <div></div>
         </div>
         <div id="stalactite4" class="stalactites">
-            <img class="animation" src="css/img/about/stalactite4.png">
-            <img src="css/img/about/stalactite4overlay.jpg">
+            <div class="animation"></div>
+            <div></div>
         </div>
         <div id="stalactite5" class="stalactites">
-            <img class="animation" src="css/img/about/stalactite5.png">
-            <img src="css/img/about/stalactite5overlay.jpg">
+            <div class="animation"></div>
+            <div></div>
         </div>
     </div>
     <div class="img"></div>
@@ -55,11 +63,11 @@
         </header>
         <article>
             <a id="ticketsBlock" href="http://euruko2014.ticketforevent.com/" target="_blank">
-                <div>
-                    <img class="back" src="css/img/tickets/ticket.png">
-                    <img class="frontShadow animation" src="css/img/tickets/ticketShadow.png">
+                <div class="backBlock">
+                    <div class="ticket back" src="img/tickets/ticket.png"></div>
+                    <div class="ticket frontShadow animation"></div>
                 </div>
-                <img class="front animation" src="css/img/tickets/ticket.png">
+                <div class="ticket front animation"></div>
             </a>
             <div class="arrow">
                 <div id="shaft" class="animation"></div>
@@ -88,7 +96,7 @@
                     <div class="popOver end">
                         <div class="triangle"></div>
                         <figure>
-                            <img src="css/img/venue/hall.jpg">
+                            <img class="hall" src="css/img/venue/hall.jpg<%=cachePuncher%>">
                         </figure>
                         <p>We will gather this time in the International Center of Culture and Arts in Kyiv, Ukraine. That is a fancy spot for famous writers, composers, and other public figures, a sort of an architectural reflection of the spiritual renaissance of Ukraine.  The building was constructed at the beginning of the 20th century. </p>
                     </div>
@@ -101,14 +109,14 @@
                     <div class="popOver">
                         <div class="triangle"></div>
                         <figure>
-                            <img src="css/img/venue/stage.jpg">
+                            <img class="stage" src="css/img/venue/stage.jpg<%=cachePuncher%>">
                         </figure>
                         <p>It’s designed in the classical style to become the greatest concert hall in Kyiv being able to accommodate for about 2000 people. Spacious rooms of the Centre's foyer will host in June of 2014 for about 600 Ruby lovers! And the city itself will embrace its visitors with Slavic generosity and kindness of locals.</p>
                     </div>
                 </div>
             </div>
             <div class="marker animation">
-                <img src="css/img/venue/spiral.png"/>
+                <div></div>
             </div>
             <div class="address"><p>1 Instytutska St, Kyiv</p></div>
         </article>

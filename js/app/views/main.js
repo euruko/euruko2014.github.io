@@ -1,3 +1,4 @@
+'use strict';
 var MainView = Backbone.View.extend({
     tagName: 'section',
     id: 'mainView',
@@ -6,7 +7,10 @@ var MainView = Backbone.View.extend({
         path: 'js/app/templates/main.html'
     },
     events: {
-//        'scroll': '_scroll',
+        'click #sideNav .nav': '_scrollTo',
+//        'dragstart #sideNav .pointer': '_dragStart',
+//        'drag #sideNav .pointer': '_drag',
+//        'dragend #sideNav .pointer': '_dragEnd',
         'click .popOverBlock': '_popOver',
         'click .popOver figure': '_showImage',
         'click #modal, #viewer': '_closeViewer',
@@ -17,44 +21,56 @@ var MainView = Backbone.View.extend({
         'click #circles .popOver': '_stopPropagation'
     },
     vOffset: 0, // this.el current scrollTop
-    delta: 0, // difference between new scrollTop and vOffset when scrolling
+    delta: 0, // difference between pointer positions when dragging
     slides: null,
     clouds: null,
     isCloudBottomReachedFirst: true, // for handling the situation when user scrolling very fast
     currentSlide: 0,
+    cache: null,
     initialize: function(){
+        this.$el.on('load', function(){
+            console.log('loaded!!!')
+        });
         this.on('rendered', function(){
             this._prepareSlides();
             this._prepareClouds();
+//            this._prepareSideNav();
+            this._cache();
             this.viewer = this.$('#viewer');
         });
     },
     scrollTo: function(hash){
-        var el = this.$(hash.substring(0, hash.length - 1))[0],
+        var el = this.$(hash.replace('/', ''))[0],
             duration = 200,
-            val = window.scrollY,// this.el.scrollTop never can be assigned value more than screen allows. In this cases an animation will never ends without this var
+            val = window.scrollY,
             newVal = this._calculateOffset(el),
-            step = newVal / duration * 10, // 10 is setTimeout minimum value
+            direction = newVal > val ? 1 : -1,
+            step = Math.abs(newVal - val) / duration * 10 * direction, // 10 is setTimeout minimum value
             animation = function(){
                 val += step;
                 window.scrollTo(0, val);
-                if (val < newVal) setTimeout(animation, 10);
+                if (direction > 0 && val < newVal || direction < 0 && val > newVal) setTimeout(animation, 10);
             }.bind(this);
         animation();
     },
+    _scrollTo: function(e){
+        e.preventDefault();
+        this.scrollTo(e.currentTarget.hash);
+    },
     _calculateOffset: function(el){
-        return window.innerHeight > el.offsetHeight ? el.offsetTop - Math.ceil((window.innerHeight - el.offsetHeight) / 2) : el.offsetTop;
+        return window.innerHeight > el.offsetHeight && el.offsetTop ? Math.abs(el.offsetTop - Math.ceil((window.innerHeight - el.offsetHeight) / 2)) : el.offsetTop;
     },
     scroll: function(vOffset, down, delta){
         var nextSlideInd = down ? this.currentSlide + 1 : this.currentSlide - 1,
             nextSlide = this.$slides[nextSlideInd];
         if (nextSlide) {
-            if ((down && this._calculateOffset(nextSlide) - 1 <= vOffset) || (!down && this._calculateOffset(this.$slides[this.currentSlide]) >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset >= this.el.scrollHeight - window.innerHeight)){
+            if ((down && this._calculateOffset(nextSlide) - 1 <= vOffset) || (!down && this._calculateOffset(this.$slides[this.currentSlide]) - 2 >= vOffset) || (nextSlideInd == this.$slides.length - 1 && vOffset >= this.el.scrollHeight - window.innerHeight)){
                 this.currentSlide = nextSlideInd;
-                this.module.controller.navigate(nextSlideInd ? nextSlide.id+'/' : '');
+                this.module.controller.navigate(nextSlideInd ? nextSlide.id+'/' : 'home/');
             }
         }
         this._cloudsParalax(vOffset, down, Math.abs(delta));
+//        this._pointerAnimation(vOffset, down, Math.abs(delta));
         this._commonAnimation(vOffset, 'about', 0.1, '.stalactites');
         this._commonAnimation(vOffset, 'tickets', .5, '#ticketsBlock');
         this._commonAnimation(vOffset, 'venue', .7, '.marker');
@@ -76,9 +92,7 @@ var MainView = Backbone.View.extend({
             els: function(){
                 var ret = [];
                 _.each(clouds, function(el){
-                    el.onload = function(){ // css animation does not start if image is not loaded
-                        this.className += ' animation';
-                    };
+                    el.classList.add('animation');
                     ret.push({
                         el: el,
                         offset: el.offsetTop // start offset
@@ -87,6 +101,24 @@ var MainView = Backbone.View.extend({
                 return ret;
             }()
         };
+    },
+    _prepareSideNav: function(){
+        var sideNav = this.$('#sideNav')[0],
+            c = .7,
+            wih = window.innerHeight,
+            links = sideNav.querySelectorAll('.nav');
+        sideNav.style.height = wih * c +'px';
+        sideNav.style.top = (wih - sideNav.offsetHeight) / 2 +'px';
+        _.each(links, function(link){
+            var slide = this.slides[link.classList[1]];
+            link.style.top = (slide.offsetTop + (slide.offsetHeight / 2)) / this.el.offsetHeight * sideNav.offsetHeight - link.offsetHeight / 2 +'px';
+        }.bind(this));
+        this.pointer = {
+            el: sideNav.querySelector('.pointer'),
+            c: sideNav.offsetHeight / this.el.offsetHeight,
+            hWih: wih / 2
+        };
+        this._pointerAnimation(0, undefined, undefined);
     },
     _cloudsParalax: function(vOffset, down, delta){
         var coef = .3,
@@ -111,6 +143,32 @@ var MainView = Backbone.View.extend({
                 }.bind(this));
             }
         }
+    },
+    _pointerAnimation: function(vOffset, down, delta){
+        var el = this.pointer.el;
+        el.style.top = (vOffset + this.pointer.hWih) * this.pointer.c - el.offsetHeight / 2+'px';
+    },
+    _changePosition: function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var y = e.originalEvent.clientY,
+            parentH = e.currentTarget.offsetHeight;
+        if (y){
+            var delta = -(this.delta - y) * this.el.offsetHeight / parentH;
+            window.scrollBy(0, delta);
+            this.delta = y;
+        }
+    },
+    _dragStart: function(e){
+        e.originalEvent.dataTransfer.effectAllowed = "move";
+        this.delta = e.originalEvent.clientY;
+    },
+    _drag: function(e){
+        this._changePosition(e);
+    },
+    _dragEnd: function(e){
+        this._changePosition(e);
+        this.delta = 0;
     },
     _commonAnimation: function(vOffset, slideId, coef, baseElSelector){
         baseElSelector || (baseElSelector = null);
@@ -143,28 +201,26 @@ var MainView = Backbone.View.extend({
     },
     _showImage: function(e){
         e.stopPropagation();
-        var image = document.createElement('img'),
-            preview = e.currentTarget.childNodes[1],
-            src = preview.src;
-        image.onload = this._onImgLoad.bind(this, preview);
-        image.src = src.substring(0, src.length - 4) + '_big.jpg';
+        var preview = e.currentTarget.childNodes[1],
+            img = this.cache.images[preview.classList[0]];
+        if (img.complete) this._onImgLoad(preview, {currentTarget: img});
+        else {
+            this.module.preload(e.currentTarget, true);
+            img.onload = this._onImgLoad.bind(this, preview);
+        }
     },
     _onImgLoad: function(originEl, e){
         var el = e.currentTarget;
         this._calculateImageOffset(el);
         this._showViewer(el, originEl);
+        this.module.unPreload(originEl.parentNode);
     },
     _calculateImageOffset: function(image){
         var imgDim = image.naturalWidth / image.naturalHeight,
             viewer = this.viewer[0],
             winDim = viewer.offsetWidth / viewer.offsetHeight;
-        if (winDim > imgDim){ //an image is narrower than window
-            image.height = viewer.offsetHeight;
-            image.style.marginLeft = Math.abs(viewer.offsetWidth - image.height * imgDim) / 2 +'px';
-        } else{ //an image is wider than window
-            image.width = viewer.offsetWidth;
-            image.style.marginTop = Math.abs(viewer.offsetHeight - image.width / imgDim) / 2 +'px';
-        }
+        if (winDim > imgDim) image.style.marginLeft = Math.abs(viewer.offsetWidth - viewer.offsetHeight * imgDim) / 2 +'px'; //an image is narrower than window
+        else image.style.marginTop = Math.abs(viewer.offsetHeight - viewer.offsetWidth / imgDim) / 2 +'px'; //an image is wider than window
     },
     _closeViewer: function(){
         this.viewer.removeClass('show');
@@ -175,6 +231,18 @@ var MainView = Backbone.View.extend({
             var els = $(e.currentTarget).find('.animation');
             if (e.type == 'mouseover') els.addClass('hover'); // toggleClass results bug in some cases
             else els.removeClass('hover');
+        }
+    },
+    _cache: function(){
+        this.cache = {};
+        var hall = document.createElement('img'),
+            stage = document.createElement('img'),
+            cachePuncher = this.module.options.cachePuncher;
+        hall.src = 'css/img/venue/hall_big.jpg'+cachePuncher;
+        stage.src = 'css/img/venue/stage_big.jpg'+cachePuncher;
+        this.cache.images = {
+            hall: hall,
+            stage: stage
         }
     },
     _renderMap: function(e){

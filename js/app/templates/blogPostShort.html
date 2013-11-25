@@ -1,0 +1,15 @@
+<% var cachePuncher = this.module.options.cachePuncher %>
+<h2><%=title%></h2>
+<div class="cover">
+    <p>Read this post</p>
+    <span></span>
+    <% if (cover){ %><img src="<%=cover+cachePuncher%>"><% } %>
+</div>
+<div class="post">
+    <p class="date"><span></span><%=date%></p>
+    <p class="text"><%=post.replace(/((\S+\s+){70}).+/, "$1...")%></p>
+</div>
+<div class="author">
+    <img src="<%=ava+cachePuncher%>">
+    <p>by <%=author%></p>
+</div>

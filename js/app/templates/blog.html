@@ -1,1 +1,8 @@
-Blog
+<section id="posts"></section>
+<nav id="pagination" style="width: <%=50+18*pages%>px">
+    <span class="prev"></span>
+    <% for (var i=1; i <= pages; i++){ %>
+        <a href="#<%=i%>" class="pageNum <%=i%>"><%=i%></a>
+    <% } %>
+    <span class="next"></span>
+</nav>

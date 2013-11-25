@@ -1,9 +1,30 @@
+/* common animations */
+
+/* rotating 360 */
+@keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+/* --- */
+
 #home .cloud.first.animation,
 #home .cloud.second.animation{
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
-    animation-duration: 30s;
-    -webkit-animation-duration: 30s;
+    animation-duration: 40s;
+    -webkit-animation-duration: 40s;
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
 }
@@ -186,7 +207,7 @@
 }
 #navView a:hover,
 #navView a.active{
-    color: #9b0909;;
+    color: #9b0909;
 }
 #navView a.button{
     transition: background .2s;
@@ -196,44 +217,51 @@
     background-color: rgba(166, 16, 16, 1);
     color: #fff;
 }
+#navView a.home{
+    transition: opacity .2s;
+    -webkit-transition: opacity .2s;
+}
+body.home #navView a.home{
+    opacity: 0;
+}
 
-#about .stalactites img:first-child{
+#about .stalactites div:first-child{
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     transition: transform .5s;
     -webkit-transition: -webkit-transform .5s;
 }
-#stalactite1 img.end:first-child{
+#stalactite1 div.end:first-child{
     transform: translate3d(0, 474px, 0);
     -webkit-transform: translate3d(0, 474px, 0);
 }
-#stalactite2 img.end:first-child{
+#stalactite2 div.end:first-child{
     transform: translate3d(0, 494px, 0);
     -webkit-transform: translate3d(0, 494px, 0);
     transition-delay: .1s;
     -webkit-transition-delay: .1s;
 }
-#stalactite3 img.end:first-child{
+#stalactite3 div.end:first-child{
     transform: translate3d(0, 531px, 0);
     -webkit-transform: translate3d(0, 531px, 0);
     transition-delay: .5s;
     -webkit-transition-delay: .5s;
 }
-#stalactite4 img.end:first-child{
+#stalactite4 div.end:first-child{
     transform: translate3d(0, 496px, 0);
     -webkit-transform: translate3d(0, 496px, 0);
     transition-delay: .3s;
     -webkit-transition-delay: .3s;
 }
-#stalactite5 img.end:first-child{
+#stalactite5 div.end:first-child{
     transform: translate3d(0, 532px, 0);
     -webkit-transform: translate3d(0, 532px, 0);
     transition-delay: 1s;
     -webkit-transition-delay: 1s;
 }
 
-#ticketsBlock img.front,
-#ticketsBlock img.frontShadow{
+#ticketsBlock .ticket.front,
+#ticketsBlock .ticket.frontShadow{
     transform: rotate(-25deg);
     -webkit-transform: rotate(-25deg);
     transform-origin: left;
@@ -243,13 +271,13 @@
     transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.5);
     -webkit-transition-timing-function: cubic-bezier(0.1, 0.6, 0.2, 1.5);
 }
-#ticketsBlock img.front.end,
-#ticketsBlock img.frontShadow.end{
+#ticketsBlock .ticket.front.end,
+#ticketsBlock .ticket.frontShadow.end{
     transform: rotate(-8deg);
     -webkit-transform: rotate(-8deg);
 }
-#ticketsBlock img.front.hover,
-#ticketsBlock img.frontShadow.hover{
+#ticketsBlock .ticket.front.hover,
+#ticketsBlock .ticket.frontShadow.hover{
     transform: rotate(-4deg);
     -webkit-transform: rotate(-4deg);
 }
@@ -326,25 +354,9 @@
         transform: translate3d(0, 0, 0);
         -webkit-transform: translate3d(0, 0, 0);
     }
-        #venue .marker img{
+        #venue .marker div{
              animation: rotating 2s linear infinite;
              -webkit-animation: rotating 2s linear infinite;
-        }
-        @keyframes rotating {
-            from{
-                transform: rotate(0deg);
-            }
-            to{
-                transform: rotate(360deg);
-            }
-        }
-        @-webkit-keyframes rotating {
-            from{
-                -webkit-transform: rotate(0deg);
-            }
-            to{
-                -webkit-transform: rotate(360deg);
-            }
         }
     #venue .address{
         transition: background-color .2s;
@@ -384,6 +396,47 @@
     #circles .popOverBlock .popOver figure:hover:before{
         background-color: rgba(0, 0, 0, .2);
     }
+#posts .blogPost h2:hover{
+    text-decoration: underline;
+}
+#posts .blogPost .cover span{
+    opacity: 0;
+    transform: translate3d(-200%, 0, 0);
+    -webkit-transform: translate3d(-200%, 0, 0);
+    transition: transform .2s .2s, opacity .2s .2s;
+    -webkit-transition: -webkit-transform .2s .2s, opacity .2s .2s;
+}
+#posts .blogPost .cover:hover span{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+#posts .blogPost .cover img{
+    opacity: 1;
+    transition: opacity .2s;
+    -webkit-transition: opacity .2s;
+}
+#posts .blogPost .cover:hover img{
+    opacity: 0;
+}
+#pagination .prev,
+#pagination .next{
+    transition: background .2s;
+    -webkit-transition: background .2s;
+}
+#pagination .prev:hover,
+#pagination .next:hover{
+    background: url('img/blog/pointer_hover.png') no-repeat center, #a61010;
+}
+#pagination a{
+    transition: color .2s;
+    -webkit-transition: color .2s;
+}
+#pagination a:hover,
+#pagination a.active{
+    color: #a61010;
+}
+
 #viewer{
     transition: transform .4s;
     -webkit-transition: -webkit-transform .4s;
@@ -400,3 +453,38 @@ body.modal #viewer{
 body.modal #modal{
     opacity: 1;
 }
+#preloader{
+    transition: background-color .2s;
+    -webkit-transition: background-color .2s;
+}
+#preloader.show.animation{
+    background-color: rgba(0, 0, 0, .5);
+}
+    #preloader img{
+        transition: opacity .2s;
+        -webkit-transition: opacity .2s;
+    }
+    #preloader.animation img{
+        animation: rotating 2s linear infinite;
+        -webkit-animation: rotating 2s linear infinite;
+        opacity: 1;
+    }
+#pagePreloader{
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+}
+#pagePreloader.show.animation{
+    opacity: 1;
+}
+    #pagePreloader div img:first-child{
+        transform-origin: 18px 17px;
+        -webkit-transform-origin: 18px 17px;
+    }
+    #pagePreloader.animation div img{
+        animation: rotating 2s linear infinite;
+        -webkit-animation: rotating 2s linear infinite;
+    }
+    #pagePreloader.animation div img:last-child{
+        animation-delay: .7s;
+        -webkit-animation-delay: .7s;
+    }

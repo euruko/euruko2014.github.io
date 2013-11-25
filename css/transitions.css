@@ -1,0 +1,164 @@
+/* page transitions */
+
+/* dissolve */
+.transition.dissolve{
+    transition-property: opacity !important;
+    -webkit-transition-property: opacity !important;
+    transition-duration: .5s !important;
+    -webkit-transition-duration: .5s !important;
+    transition-timing-function: ease !important;
+    -webkit-transition-timing-function: ease !important;
+    transition-delay: 0s !important;
+    -webkit-transition-delay: 0s !important;
+}
+.transition.dissolve.old.end,
+.transition.dissolve.new.start{
+    opacity: 0 !important;
+}
+.transition.dissolve.old.start,
+.transition.dissolve.new.end{
+    opacity: 1 !important;
+}
+
+/* slide */
+.transition.slideLeft,
+.transition.slideRight{
+    transition-property: transform !important;
+    -webkit-transition-property: -webkit-transform !important;
+    transition-duration: 1s !important;
+    -webkit-transition-duration: 1s !important;
+    transition-timing-function: ease-in-out !important;
+    -webkit-transition-timing-function: ease-in-out !important;
+    transition-delay: 0s !important;
+    -webkit-transition-delay: 0s !important;
+}
+.transition.slideLeft.old.start,
+.transition.slideLeft.new.end,
+.transition.slideRight.old.start,
+.transition.slideRight.new.end{
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+}
+/* left */
+.transition.slideLeft.old.end{
+    transform: translate3d(100%, 0, 0) !important;
+    -webkit-transform: translate3d(100%, 0, 0) !important;
+}
+.transition.slideLeft.new.start{
+    transform: translate3d(-100%, 0, 0) !important;
+    -webkit-transform: translate3d(-100%, 0, 0) !important;
+}
+/* right */
+.transition.slideRight.old.end{
+    transform: translate3d(-100%, 0, 0) !important;
+    -webkit-transform: translate3d(-100%, 0, 0) !important;
+}
+.transition.slideRight.new.start{
+    transform: translate3d(100%, 0, 0) !important;
+    -webkit-transform: translate3d(100%, 0, 0) !important;
+}
+
+/* emerge */
+.transition.emerge{
+    transition-property: transform !important;
+    -webkit-transition-property: -webkit-transform !important;
+    transition-duration: 1s !important;
+    -webkit-transition-duration: 1s !important;
+    transition-timing-function: ease-in-out !important;
+    -webkit-transition-timing-function: ease-in-out !important;
+    transition-delay: 0s !important;
+    -webkit-transition-delay: 0s !important;
+}
+.transition.emerge.old.end{
+    transform: translate3d(100%, 0, 0) scale(0) !important;
+    -webkit-transform: translate3d(100%, 0, 0) scale(0) !important;
+}
+.transition.emerge.new.start{
+    transform: translate3d(-100%, 0, 0) scale(0) !important;
+    -webkit-transform: translate3d(-100%, 0, 0) scale(0) !important;
+}
+.transition.emerge.old.start,
+.transition.emerge.new.end{
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* carousel */
+.transition.carousel{
+    transition-property: transform !important;
+    -webkit-transition-property: -webkit-transform !important;
+    transition-duration: 2s !important;
+    -webkit-transition-duration: 2s !important;
+    transition-timing-function: ease !important;
+    -webkit-transition-timing-function: ease !important;
+    transition-delay: 0s !important;
+    -webkit-transition-delay: 0s !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+.transition.carousel.old.end{
+    transform: perspective(100em) translate3d(100%, 0, 0) scale(0) rotateY(90deg) !important;
+    -webkit-transform: perspective(100em) translate3d(100%, 0, 0) scale(0) rotateY(90deg) !important;
+}
+.transition.carousel.new.start{
+    transform: perspective(100em) translate3d(-100%, 0, 0) scale(0) rotateY(-90deg) !important;
+    -webkit-transform: perspective(100em) translate3d(-100%, 0, 0) scale(0) rotateY(-90deg) !important;
+}
+.transition.carousel.old.start,
+.transition.carousel.new.end{
+    transform: perspective(100em) translate3d(0, 0, 0) scale(1) rotateY(0) !important;
+    -webkit-transform: perspective(100em) translate3d(0, 0, 0) scale(1) rotateY(0) !important;
+}
+
+/* rotate */
+.transition.rotateX,
+.transition.rotateY{
+    transition-property: transform !important;
+    -webkit-transition-property: -webkit-transform !important;
+    transition-duration: .5s !important;
+    -webkit-transition-duration: .5s !important;
+    transition-timing-function: ease !important;
+    -webkit-transition-timing-function: ease !important;
+    transition-delay: 0s !important;
+    -webkit-transition-delay: 0s !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+/* Y axis */
+.transition.rotateY.old.end{
+    transform: perspective(1000px) rotateY(180deg) !important;
+    -webkit-transform: perspective(1000px) rotateY(180deg) !important;
+}
+.transition.rotateY.new.start{
+    transform: perspective(1000px) rotateY(-180deg) !important;
+    -webkit-transform: perspective(1000px) rotateY(-180deg) !important;
+}
+.transition.rotateY.new.end,
+.transition.rotateY.old.start{
+    transform: perspective(1000px) rotateY(0deg) !important;
+    -webkit-transform: perspective(1000px) rotateY(0deg) !important;
+}
+.transition.rotateY.new{
+    z-index: 1 !important;
+}
+/* X axis */
+.transition.rotateX.old.end{
+    transform: perspective(1000px) rotate(180deg) !important;
+    -webkit-transform: perspective(1000px) rotate(180deg) !important;
+}
+.transition.rotateX.new.start{
+    transform: perspective(1000px) rotate(-180deg) !important;
+    -webkit-transform: perspective(1000px) rotate(-180deg) !important;
+}
+.transition.rotateX.new.end,
+.transition.rotateX.old.start{
+    transform: perspective(1000px) rotate(0deg) !important;
+    -webkit-transform: perspective(1000px) rotate(0deg) !important;
+}
+.transition.rotateX.new{
+    z-index: 1 !important;
+}
