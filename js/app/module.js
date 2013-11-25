@@ -42,13 +42,15 @@ var App = Backbone.Application.extend({
         if (pl){
             var transitionEnd = function(){
                 el.removeChild(pl);
-                pl.removeEventListener('transitionend', transitionEnd);
                 pl.removeEventListener('webkitTransitionEnd', transitionEnd);
+                pl.removeEventListener('transitionend', transitionEnd);
             };
-            pl.addEventListener('transitionend', transitionEnd, false);
             pl.addEventListener('webkitTransitionEnd', transitionEnd, false);
-            pl.classList.remove('show');
-            pl.classList.remove('animation');
+            pl.addEventListener('transitionend', transitionEnd, false);
+            requestAnimationFrame(function(){
+                pl.classList.remove('show');
+                pl.classList.remove('animation');
+            });
         }
     },
     preload: function(el, modal){
