@@ -1,11 +1,12 @@
 'use strict';
 var App = Backbone.Application.extend({
+    loaded: false,
     initialize: function(){
         window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
         window.addEventListener('progress', function(e){console.log(e.loaded, e.total)}, false);
         window.addEventListener('load', this._onLoad.bind(this), false);
         this.on('started', this._onStarted);
-        // this.pagePreload();
+        this.pagePreload();
         this.start();
     },
     _onStarted: function(){
@@ -13,7 +14,8 @@ var App = Backbone.Application.extend({
     },
     _onLoad: function(){
         this.trigger('window.loaded', window);
-        // this.pageUnPreload();
+        this.pageUnPreload();
+        this.loaded = true;
     },
     _bindScroll: function(){
         var offset = window.scrollY,

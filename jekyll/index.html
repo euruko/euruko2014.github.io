@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% for post in site.posts %}
+  {% if post != site.posts.first%},{% endif %}
+  {
+    "date": "{{post.date | date: "%B %-d, %Y"}}",
+    "title": "{{post.title}}",
+    "cover": "{{post.cover}}",
+    "author": "{{post.author}}",
+    "ava": "{{post.ava}}",
+    "post": "{{post.post | markdownify}}"
+  }
+{% endfor %}

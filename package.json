@@ -1,0 +1,26 @@
+{
+  "name": "euruko",
+  "version": "1.2.0",
+  "description": "The annual European Ruby Conference on Ruby programming language web-site",
+  "author": "fima <azarija@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "engines": {
+    "node": "~0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-env": "~0.4.0",
+    "grunt-preprocess": "~3.0.1",
+    "grunt-contrib-cssmin": "~0.4.1",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-compress": "~0.5.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "noflo-jekyll": "0.0.1",
+    "grunt-jekyll": "~0.4.1"
+  },
+  "dependencies": {}
+}

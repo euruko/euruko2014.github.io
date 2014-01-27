@@ -8,9 +8,10 @@ var MainView = Backbone.View.extend({
     },
     events: {
         'click #sideNav .nav': '_scrollTo',
-//        'dragstart #sideNav .pointer': '_dragStart',
-//        'drag #sideNav .pointer': '_drag',
-//        'dragend #sideNav .pointer': '_dragEnd',
+//        'mousedown #sideNav .pointer': '_dragStart',
+//        'mousemove #sideNav': '_drag',
+//        'mouseup #sideNav': '_dragEnd',
+//        'mouseleave #sideNav': '_dragEnd',
         'click .popOverBlock': '_popOver',
         'click .popOver figure': '_showImage',
         'click #modal, #viewer': '_closeViewer',
@@ -21,7 +22,7 @@ var MainView = Backbone.View.extend({
         'click #circles .popOver': '_stopPropagation'
     },
     vOffset: 0, // this.el current scrollTop
-    delta: 0, // difference between pointer positions when dragging
+    pointer: null,
     slides: null,
     clouds: null,
     isCloudBottomReachedFirst: true, // for handling the situation when user scrolling very fast
@@ -35,7 +36,8 @@ var MainView = Backbone.View.extend({
             this._prepareSlides();
             this._prepareClouds();
 //            this._prepareSideNav();
-            this._cache();
+            if (!this.module.loaded) this.module.on('window.loaded', this._cache.bind(this));
+            else this._cache();
             this.viewer = this.$('#viewer');
         });
     },
@@ -48,8 +50,10 @@ var MainView = Backbone.View.extend({
             step = Math.abs(newVal - val) / duration * 10 * direction, // 10 is setTimeout minimum value
             animation = function(){
                 val += step;
-                window.scrollTo(0, val);
-                if (direction > 0 && val < newVal || direction < 0 && val > newVal) setTimeout(animation, 10);
+                if ((direction > 0 && val < newVal) || (direction < 0 && val > newVal)){
+                    window.scrollTo(0, val);
+                    setTimeout(animation, 10);
+                } else window.scrollTo(0, newVal);
             }.bind(this);
         animation();
     },
@@ -70,7 +74,7 @@ var MainView = Backbone.View.extend({
             }
         }
         this._cloudsParalax(vOffset, down, Math.abs(delta));
-//        this._pointerAnimation(vOffset, down, Math.abs(delta));
+//        this._pointerAnimation(vOffset);
         this._commonAnimation(vOffset, 'about', 0.1, '.stalactites');
         this._commonAnimation(vOffset, 'tickets', .5, '#ticketsBlock');
         this._commonAnimation(vOffset, 'venue', .7, '.marker');
@@ -106,7 +110,8 @@ var MainView = Backbone.View.extend({
         var sideNav = this.$('#sideNav')[0],
             c = .7,
             wih = window.innerHeight,
-            links = sideNav.querySelectorAll('.nav');
+            links = sideNav.querySelectorAll('.nav'),
+            pointer = sideNav.querySelector('.pointer');
         sideNav.style.height = wih * c +'px';
         sideNav.style.top = (wih - sideNav.offsetHeight) / 2 +'px';
         _.each(links, function(link){
@@ -114,11 +119,14 @@ var MainView = Backbone.View.extend({
             link.style.top = (slide.offsetTop + (slide.offsetHeight / 2)) / this.el.offsetHeight * sideNav.offsetHeight - link.offsetHeight / 2 +'px';
         }.bind(this));
         this.pointer = {
-            el: sideNav.querySelector('.pointer'),
+            el: pointer,
             c: sideNav.offsetHeight / this.el.offsetHeight,
-            hWih: wih / 2
+            hWih: wih / 2,
+            delta: 0, // difference between pointer positions when dragging
+            dragging: false
         };
-        this._pointerAnimation(0, undefined, undefined);
+        this._pointerAnimation(0);
+        this.pointer.offset = pointer.offsetTop;
     },
     _cloudsParalax: function(vOffset, down, delta){
         var coef = .3,
@@ -144,31 +152,33 @@ var MainView = Backbone.View.extend({
             }
         }
     },
-    _pointerAnimation: function(vOffset, down, delta){
+    _pointerAnimation: function(y){
         var el = this.pointer.el;
-        el.style.top = (vOffset + this.pointer.hWih) * this.pointer.c - el.offsetHeight / 2+'px';
+        el.style.top = (y + this.pointer.hWih) * this.pointer.c - el.offsetHeight / 2+'px';
+        this.pointer.delta = y;
     },
-    _changePosition: function(e){
+    _changePointerPosition: function(e){
         e.preventDefault();
         e.stopPropagation();
-        var y = e.originalEvent.clientY,
-            parentH = e.currentTarget.offsetHeight;
+        var y = e.originalEvent.clientY;
         if (y){
-            var delta = -(this.delta - y) * this.el.offsetHeight / parentH;
-            window.scrollBy(0, delta);
-            this.delta = y;
+            var delta = y - this.pointer.mouseY;
+            this.pointer.mouseY = e.originalEvent.clientY;
+            console.log(delta / this.pointer.c);
+            window.scrollBy(0, delta / this.pointer.c);
         }
+
     },
     _dragStart: function(e){
-        e.originalEvent.dataTransfer.effectAllowed = "move";
-        this.delta = e.originalEvent.clientY;
+        this.pointer.dragging = true;
+        this.pointer.delta = window.scrollY;
+        this.pointer.mouseY = e.originalEvent.clientY;
     },
     _drag: function(e){
-        this._changePosition(e);
+        if (this.pointer.dragging) this._changePointerPosition(e);
     },
     _dragEnd: function(e){
-        this._changePosition(e);
-        this.delta = 0;
+        this.pointer.dragging = false;
     },
     _commonAnimation: function(vOffset, slideId, coef, baseElSelector){
         baseElSelector || (baseElSelector = null);

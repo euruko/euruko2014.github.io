@@ -2,8 +2,8 @@
 var MainController = Backbone.Controller.extend({
     routes: {
         '(home)(about)(tickets)(venue)(/)': 'slide',
-//        'blog(/:page)(/)': 'blog',
-//        'blog/post/:id(/)': 'blogPost',
+        'blog(/:page)(/)': 'blog',
+        'blog/post/:id(/)': 'blogPost',
         '*whatever': 'notFound'
     },
     prevBodyClass: '',
