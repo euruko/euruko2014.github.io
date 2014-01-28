@@ -1,9 +1,9 @@
 ---
 title: "WELCOME TO EURUKO 2014 OR 'VITAEMO!' IN UKRAINIAN"
-author: "Mariia Kapustiak"
+author: "Julia Tokareva"
 date: "2013-11-14"
 cover: ""
-ava: ""
+ava: "blog/avatars/yulia.jpg"
 post: "You've already been here (at the conference, I mean)... If not, you don't want to miss it this time!
 
 
