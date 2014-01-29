@@ -27,7 +27,9 @@ var App = Backbone.Application.extend({
                 newOffset = window.scrollY;
                 delta = newOffset - offset;
                 offset = newOffset;
-                mainView.scroll(newOffset, delta > 0, Math.abs(delta));
+                if (delta){
+                    mainView.scroll(newOffset, delta > 0, Math.abs(delta));
+                }
             }
         }.bind(this), false);
     },

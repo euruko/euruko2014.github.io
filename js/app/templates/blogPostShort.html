@@ -5,10 +5,10 @@
     <span></span>
     <% if (cover){ %><img src="<%=cover+cachePuncher%>"><% } %>
 </div>
-<div class="post">
+<article class="post">
     <p class="date"><span></span><%=date%></p>
-    <p class="text"><%=post.replace(/((\S+\s+){70}).+/, "$1...")%></p>
-</div>
+    <div class="text"><%=post.replace(/((\S+\s+){70}).+/, "$1...")%></div>
+</article>
 <div class="author">
     <img src="<%=ava+cachePuncher%>">
     <p>by <%=author%></p>

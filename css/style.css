@@ -152,7 +152,7 @@ body.loading{
             background-size: contain;
             display: block;
             height: 103px;
-            left: -15px;
+            left: 30px;
             opacity: 1;
             position: absolute;
             top: -30px;
@@ -679,6 +679,11 @@ body.loading{
                 overflow: hidden;
                 width: 440px;
             }
+                #posts .blogPost .post img,
+                #posts .blogPost .post .list,
+                #posts .blogPost .post .table{
+                    display: none;
+                }
                 #posts .blogPost .post .date,
                 #blogPostView .post .date{
                     color: #000;
@@ -703,6 +708,63 @@ body.loading{
                     line-height: 22px;
                     text-align: left;
                 }
+                    #blogPostView .post .text .imgCont{
+                        overflow: hidden;
+                    }
+                    #blogPostView .post .text .w200{
+                        width: 200px;
+                    }
+                    #blogPostView .post .text .fl{
+                        float: left;
+                    }
+                    #blogPostView .post .text .fr{
+                        float: right;
+                    }
+                    #blogPostView .post .text .m15{
+                        margin: 15px;
+                    }
+                    #blogPostView .post .text .marked,
+                    #posts .blogPost .post .text .marked,
+                    #blogPostView .post .text .mail,
+                    #posts .blogPost .post .text .mail,
+                    #blogPostView .post .text .link,
+                    #posts .blogPost .post .text .link,
+                    #blogPostView .post .text .list li:before{
+                        color: #a02e30;
+                    }
+                    #blogPostView .post .text .link{
+                        text-decoration: underline;
+                    }
+                    #blogPostView .post .text .list{
+                        list-style: none;
+                        padding:0;
+                        margin:0;
+                    }
+                        #blogPostView .post .text .list li{
+                            padding-left: 1em;
+                            text-indent: -.7em;
+                        }
+                            #blogPostView .post .text .list li:before{
+                                content: "• ";
+                            }
+                    #blogPostView .post .text .table{
+                        display: inline-block;
+                    }
+                        #blogPostView .post .text .table .head,
+                        #blogPostView .post .text .table .line{
+                            border-bottom: 1px solid #000;
+                            border-left: 1px solid #000;
+                            overflow: hidden;
+                        }
+                            #blogPostView .post .text .table .head{
+                                border-top: 1px solid #000;
+                            }
+                            #blogPostView .post .text .table .head .cell,
+                            #blogPostView .post .text .table .line .cell{
+                                border-right: 1px solid #000;
+                                float: left;
+                                padding: 0 4px;
+                            }
             #posts .blogPost .author,
             #blogPostView .author{
                 float: right;
