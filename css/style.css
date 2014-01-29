@@ -680,7 +680,7 @@ body.loading{
                 width: 440px;
             }
                 #posts .blogPost .post img,
-                #posts .blogPost .post .list,
+                #posts .blogPost .post ul,
                 #posts .blogPost .post .table{
                     display: none;
                 }
@@ -727,24 +727,29 @@ body.loading{
                     #posts .blogPost .post .text .marked,
                     #blogPostView .post .text .mail,
                     #posts .blogPost .post .text .mail,
-                    #blogPostView .post .text .link,
-                    #posts .blogPost .post .text .link,
-                    #blogPostView .post .text .list li:before{
+                    #blogPostView .post .text a,
+                    #posts .blogPost .post .text a,
+                    #blogPostView .post .text ul li:before{
                         color: #a02e30;
                     }
-                    #blogPostView .post .text .link{
+                    #blogPostView .post .text a{
                         text-decoration: underline;
                     }
-                    #blogPostView .post .text .list{
+                    #blogPostView .post .text img{
+                        display: block;
+                        float: left;
+                        margin: 15px;
+                    }
+                    #blogPostView .post .text ul{
                         list-style: none;
                         padding:0;
                         margin:0;
                     }
-                        #blogPostView .post .text .list li{
+                        #blogPostView .post .text ul li{
                             padding-left: 1em;
                             text-indent: -.7em;
                         }
-                            #blogPostView .post .text .list li:before{
+                            #blogPostView .post .text ul li:before{
                                 content: "• ";
                             }
                     #blogPostView .post .text .table{
