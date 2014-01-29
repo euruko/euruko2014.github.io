@@ -9,6 +9,6 @@ layout: default
     "cover": "{{post.cover}}",
     "author": "{{post.author}}",
     "ava": "{{post.ava}}",
-    "post": "{{post.post | markdownify}}"
+    "post": "{{post.post | markdownify | remove_new_lines}}"
   }
 {% endfor %}
