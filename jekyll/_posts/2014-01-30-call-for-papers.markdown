@@ -1,9 +1,9 @@
 ---
 title: "Call for Papers"
-author: "Mariia Kapustiak"
+author: "Natalia Zaslavskaya"
 date: "2014-01-30"
 cover: ""
-ava: ""
+ava: "blog/avatars/natalia.jpg"
 post: "
 
 ###Submit your Paper Today
