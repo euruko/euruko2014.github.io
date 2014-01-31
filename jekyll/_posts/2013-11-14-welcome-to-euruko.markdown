@@ -16,12 +16,12 @@ Before you start out, be sure that you'll be welcomed, expected, appreciated and
 Speaking about the team, to make you feel safe and trustful, we are experts successfully running thе developers conferences, meetups and RailsGirls events for years on end.
 
 
-![Vlad](blog/avatars/vlad.jpg) 
-![Natalia](blog/avatars/natalia.jpg) 
+![Vlad](blog/avatars/vlad.jpg)
+![Natalia](blog/avatars/natalia.jpg)
 ![Yulia](blog/avatars/yulia.jpg)
 
 
-As you might have used to, you will love the next event  too. And we'll keep you posted here on all updates.
+As you might have used to, you will love the next event too. And we'll keep you posted here on all updates.
 
 
 If any brilliant idea has stricken you (or you just want to say hello), mail us at hi@euruko2014.org or tweet at @euruko."

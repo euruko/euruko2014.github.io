@@ -9,7 +9,7 @@ post: "
 ###Announcing
 
 
-We know you've been waiting too long but it's over and on the 4th of February 2014 your EuRuKo tickets will be open for sale [here](http://euruko2014.ticketforevent.com/) (we'll definitely tweet about that).
+We know you've been waiting too long but it's over and on the 4th of February 2014 your EuRuKo tickets will be open for sale [here](http://euruko2014.ticketforevent.com/) (we'll tweet about that).
 
 ###Price
 
@@ -30,8 +30,6 @@ What do I get with a ticket?
 * You may vote for those great minds who are going to speak at the conference.
 
 * Though we haven't finalized the list of our famous guests, as soon as we have, you'll be the first to know.
-
-* Party! Party! Party… and not only (a travel guide and other cultural entertainments find [here](https://docs.google.com/a/passety.com/document/d/1_oUlCGHV3Sf29DTYk0mkX0DO4gNg0-Q2e4nZGAU3RcY/edit))
 
 
 That's all so far. A new piece of scoop is coming...

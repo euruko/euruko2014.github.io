@@ -9,12 +9,12 @@ post: "
 ###Submit your Paper Today
 
 
-Signing up to the conference, don't miss the chance to spread your knowledge, ideas and expertise. We are inviting you to register for submitting your report here. The finest papers, which will be presented for the public at the beginning of April, are going to be chosen by voting, so make sure you've shared the material in advance.
+Signing up to the conference, don't miss the chance to spread your knowledge, ideas and expertise. We are inviting you to register for submitting your proposal here. The most interesting papers, which will be presented for the public at the beginning of April, are going to be chosen by voting, so make sure you've made your proposal in advance.
 
 ###Guidelines
 
 
-* Submit your proposal by March 31st,  2014, 23:59:59 CEST. No excuses!
+* Submit your proposal by March 31st, 2014, 23:59:59 CEST. No excuses!
 
 * All talks are in English.
 
@@ -43,7 +43,7 @@ If you get selected as a speaker at EuRuKo, here's what you get:
 ###The Selection Process
 
 
-Not us, but your readers are those who pick up the smartest papers. As submissions are anonymous, we don't bias against anything related to the submitting person.
+Not us, but your readers are those who pick up the smartest papers. We don't bias against anything related to the submitting person.
 
 
 Two rounds of voting:
@@ -51,13 +51,16 @@ Two rounds of voting:
 
 * The first round rates each talk on a scale from 1 to 10.
 
-* The top-N (~50) submissions are rated again on a 3-point scale: 'OK', 'WOW', 'MUST HAVE'.
+* The top-N (~40) submissions are rated again on a 3-point scale: 'OK', 'WOW', 'MUST HAVE'.
 
 
-We expect  about 100 excellent submissions for 14 speaking slots. The process helps us to select the right ones. Roughly, that's all about the paper process. Ping us if there are still some questions via [hi@euruko.org](mailto:hi@euruko.org).
+We expect about 100 excellent submissions for 14 speaking slots. The process helps us to select the right ones. Roughly, that's all about the paper process. Ping us if there are still some questions via [hi@euruko.org](mailto:hi@euruko.org).
 
 
-<iframe src='https://docs.google.com/forms/d/1ErQwvmneEEy2p4NZvFPkjl1d9vUPEBzJV_BaJfkG4bc/viewform?embedded=true' width='760' height='500' frameborder='0' marginheight='0' marginwidth='0'>Loading...</iframe>
+Last but not least, the committee may (or may not) invite maximum of 4 speakers on it's own. This is done to select keynote speaker and those who we think will be a great benefit to the community.
+
+
+<iframe src='https://docs.google.com/forms/d/1ErQwvmneEEy2p4NZvFPkjl1d9vUPEBzJV_BaJfkG4bc/viewform?embedded=true' width='500' height='1500' frameborder='0' marginheight='0' marginwidth='0'>Loading...</iframe>
 
 
 "
