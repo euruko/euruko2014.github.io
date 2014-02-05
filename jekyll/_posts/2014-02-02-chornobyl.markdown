@@ -6,9 +6,7 @@ cover: ""
 ava: "blog/avatars/natalia.jpg"
 post: "
 
-<h2 style='text-align:center;'>
-  Unforgettable exploration
-</h2>
+###Unforgettable exploration
 
 In the middle of a deserted city are starring visitors full of questions, exaltation and amazement, and probably they are a bit hungry but hopefully the lunch is about to start. Though the area is quite worn off, isolated, old-fashioned, soviet-union like, lonely, it is vivid, safe and in some way unspoiled by the human. A perfect shot is being taken... Not a lyrics at all but my foresight of your possible outstanding trip to one of the most extraordinary Ukrainian tourist deck, the Chornobyl city with its live preservation of 80s. If you are an eager and adventurous traveller, venture to one of [33 most beautiful abandoned places](http://imgur.com/a/D9iDC).
 
@@ -91,6 +89,6 @@ Check out the Prypyat river and Chornobyl city. The territory looks ordinary and
 
 The alley of Chornobyl zone extincted villages reminds us about those places and their inhabitants who sacrificed their lives in the catastrophe.
 
-<img alt='Chornobyl 1' src='blog/attachments/chornobyl1.png' style='width:100%;'/>
+<img alt='Chornobyl 2' src='blog/attachments/chornobyl2.png' style='width:100%;'/>
 "
 ---
