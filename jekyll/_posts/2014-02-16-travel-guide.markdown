@@ -94,17 +94,16 @@ You don’t have to eat out at all of them but at least see one or two;). You’
 
 You may pick one hotel of the suggested below
 
-<table>
-  <style type='text/css'>
-    table{
-      border-collapse:collapse;
-    }
-    th, td{ padding: 0 2px 0; }
-    table, td, th
-    {
-      border:1px solid #4b4b4b;;
-    }
-  </style>
+
+
+
+<style type='text/css'>
+  th, td{ padding: 0 2px 0; }
+  table, td, th{
+    border:1px solid #4b4b4b;
+  }
+</style>
+<table style='border-collapse:collapse;'>
   <tr>
     <th>Name</th>
     <th>Quality</th>
