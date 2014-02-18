@@ -97,13 +97,13 @@ You may pick one hotel of the suggested below
 
 
 
-<style type='text/css'>
-  th, td{ padding: 0 2px 0; }
-  table, td, th{
-    border:1px solid #4b4b4b;
-  }
-</style>
 <table style='border-collapse:collapse;'>
+  <style type='text/css'>
+    th, td{ padding: 0 2px 0; }
+    table, td, th{
+      border:1px solid #4b4b4b;
+    }
+  </style>
   <tr>
     <th>Name</th>
     <th>Quality</th>
