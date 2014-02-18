@@ -11,7 +11,9 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-
+jekyll/_site
+blog/data
+!blog/data/index.json
 # YARD artifacts
 .yardoc
 _yardoc
