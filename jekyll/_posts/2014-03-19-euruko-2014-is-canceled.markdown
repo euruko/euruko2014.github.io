@@ -1,9 +1,9 @@
 ---
 title: "Euruko 2014 is canceled"
-author: "Natalia Zaslavskaya"
+author: "Vlad Gorodetsky"
 date: "2014-03-19"
 cover: ""
-ava: "blog/avatars/natalia.jpg"
+ava: "blog/avatars/vlad.jpg"
 post: "
 
 We are very sad to announce that EuRuKo 2014 has to be cancelled. Here's why.
